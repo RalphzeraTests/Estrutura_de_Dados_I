@@ -46,6 +46,9 @@ void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
     else
     {
         Elemento *antigo = umaLista->_primeiro;
+        antigo->_dado = umaLista->_primeiro->_dado;
+        printf("%p", antigo->_dado);
+        antigo->_proximo = umaLista->_primeiro->_proximo;
         umaLista->_primeiro = el;
         el->_proximo = antigo;
     }
@@ -78,7 +81,7 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
             }
             else
             {
-                if (!(el->_proximo == NULL))
+                if ((el->_proximo != NULL))
                 {
                     el = el->_proximo;
                 }
@@ -87,10 +90,12 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
                     return achou;
                 }
             }
+            printf("el: %p / el.dado: %p\n", el, el->_dado);
             if (el->_dado == umDado)
             {
                 achou = true;
                 printf("opa, achei\n");
+                return achou;
             }
             else
             {
@@ -123,6 +128,7 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
                 if (!(el->_proximo == NULL))
                 {
                     el = el->_proximo;
+                    printf("el: %p ", el);
                 }
                 else
                 {
@@ -136,6 +142,7 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
             }
             else
             {
+                printf("el: %p ", el);
                 printf("ainda não achei a posicao\n");
             }
         }
@@ -182,6 +189,7 @@ int main()
     int d1 = 10;
     int d2 = 20;
     int d3 = 30;
+    printf("endereco da lista: %p\n", p);
     printf("Quantidade: %d || primeiro: %p\n", p->_quantidade, p->_primeiro);
     adicionaNoInicio(p, &d1);
     printf("Quantidade: %d || primeiro: %p\n", p->_quantidade, p->_primeiro);
@@ -192,11 +200,10 @@ int main()
     else
     {
         printf("Lista não esta Vazia\n");
+        printf("\n");
         printf("d1: %p\n", &d1);
-        printf("\n");
-        printf("\n");
-        printf("\n");
         printf("Dado1: %p || proximo: %p\n", p->_primeiro->_dado, p->_primeiro->_proximo);
+        printf("el1: %p", p->_primeiro);
         printf("\n");
         printf("a posicao do d1 na lista e: %d\n", posicao(p, &d1));
         adicionaNoInicio(p, &d2);
