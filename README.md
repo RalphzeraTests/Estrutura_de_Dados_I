@@ -1,20 +1,7 @@
-# gtest
+# Exercícios Feitos
 
-Repositório para testar o funcionamento do GTest
+## Racionais
 
----
+    Criei pra testar o gtest, mas não funcionou então eu desisti
 
-## Como Usar
-
-### Para instalar as bibliotecado do GTest (Ubuntu)
-
-- \$ sudo apt-get install libgtest-dev
-- \$ sudo apt-get install cmake
-- \$ cd /usr/src/gtest
-- \$ sudo cmake CMakeLists.txt
-- \$ sudo make
-- \$ sudo cp \*.a /usr/lib
-
-### Referência
-
-https://www.srcmake.com/home/google-cpp-test-framework
+## Lista Encadeada
