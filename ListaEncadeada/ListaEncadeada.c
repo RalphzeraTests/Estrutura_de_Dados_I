@@ -62,10 +62,7 @@ void destroiListaEncadeada(ListaEncadeada *umaLista)
     free(umaLista);
     return;
 }
-int posicao(ListaEncadeada *umaLista, void *umDado)
-{
-    return 1;
-}
+
 bool contem(ListaEncadeada *umaLista, void *umDado)
 {
     bool achou = false;
@@ -103,6 +100,48 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
     }
     free(el);
     return achou;
+}
+int posicao(ListaEncadeada *umaLista, void *umDado)
+{
+    printf("Verficando Posicao | \n");
+    printf("\n");
+    if (contem(umaLista, umDado))
+    {
+        printf("\n");
+        bool achou = false;
+        Elemento *el = (Elemento *)malloc(sizeof(Elemento));
+        for (int i = 0; i < umaLista->_quantidade; i++)
+        {
+            if (i == 0)
+            {
+                el = umaLista->_primeiro;
+            }
+            else
+            {
+                if (!(el->_proximo == NULL))
+                {
+                    el = el->_proximo;
+                }
+                else
+                {
+                    return achou;
+                }
+            }
+            if (el->_dado == umDado)
+            {
+                achou = true;
+                return i;
+                printf("opa, achei a posicao\n");
+            }
+            else
+            {
+                printf("ainda não achei a posicao\n");
+            }
+        }
+
+        free(el);
+    }
+    return 0;
 }
 void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
 {
@@ -153,8 +192,12 @@ int main()
     {
         printf("Lista não esta Vazia\n");
         printf("d1: %p\n", &d1);
+        printf("\n");
+        printf("\n");
+        printf("\n");
         printf("Dado1: %p || proximo: %p\n", p->_primeiro->_dado, p->_primeiro->_proximo);
-        contem(p, &d1);
+        printf("\n");
+        printf("a posicao do d1 na lista e: %d\n", posicao(p, &d1));
     }
     destroiListaEncadeada(p);
 
