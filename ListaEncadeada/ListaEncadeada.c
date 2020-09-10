@@ -1,7 +1,4 @@
-#ifndef ELEMENTO_H
-#define ELEMENTO_H
-#ifndef LISTAENCADEADA_H
-#define LISTAENCADEADA_H
+
 
 #include <stdbool.h>
 #include <stdbool.h>
@@ -35,7 +32,8 @@ void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
 {
     printf("adicionando no inicio    |  ");
     printf("umDado: %p\n", umDado);
-    Elemento *el = (Elemento *)calloc(1, sizeof(Elemento));
+    Elemento *el = (Elemento *)malloc(sizeof(Elemento));
+    printf("endereço do novo elemento: %p\n", el);
     el->_dado = umDado;
 
     if (umaLista->_quantidade == 0)
@@ -47,7 +45,7 @@ void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
     {
         Elemento *antigo = umaLista->_primeiro;
         antigo->_dado = umaLista->_primeiro->_dado;
-        printf("%p", antigo->_dado);
+        printf("dado do antigo: %p\n", antigo->_dado);
         antigo->_proximo = umaLista->_primeiro->_proximo;
         umaLista->_primeiro = el;
         el->_proximo = antigo;
@@ -69,7 +67,7 @@ void destroiListaEncadeada(ListaEncadeada *umaLista)
 bool contem(ListaEncadeada *umaLista, void *umDado)
 {
     bool achou = false;
-    printf("procurando\n");
+    printf("      procurando se existe\n");
     Elemento *el = (Elemento *)malloc(sizeof(Elemento));
     for (int i = 0; i < umaLista->_quantidade; i++)
     {
@@ -90,16 +88,16 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
                     return achou;
                 }
             }
-            printf("el: %p / el.dado: %p\n", el, el->_dado);
+            printf("      el: %p / el.dado: %p\n", el, el->_dado);
             if (el->_dado == umDado)
             {
                 achou = true;
-                printf("opa, achei\n");
+                printf("      opa, achei\n");
                 return achou;
             }
             else
             {
-                printf("ainda não achei\n");
+                printf("      ainda não achei\n");
             }
         }
     }
@@ -108,7 +106,7 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
 }
 int posicao(ListaEncadeada *umaLista, void *umDado)
 {
-    printf("Verficando Posicao | \n");
+    printf("   Verficando Posicao | \n");
     printf("\n");
     int i = 0;
     if (contem(umaLista, umDado))
@@ -128,22 +126,21 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
                 if (!(el->_proximo == NULL))
                 {
                     el = el->_proximo;
-                    printf("el: %p ", el);
                 }
                 else
                 {
                     return achou;
                 }
             }
+            printf("   el: %p / el.dado: %p\n", el, el->_dado);
             if (el->_dado == umDado)
             {
                 achou = true;
-                printf("opa, achei a posicao\n");
+                printf("   opa, achei a posicao\n");
             }
             else
             {
-                printf("el: %p ", el);
-                printf("ainda não achei a posicao\n");
+                printf("   ainda não achei a posicao\n");
             }
         }
 
@@ -176,10 +173,6 @@ void *retiraEspecifico(ListaEncadeada *umaLista, void *umDado)
     return NULL;
 }
 
-#endif /* LISTAENCADEADA_H */
-
-#endif /* ELEMENTO_H */
-
 //implemente as funcoes da lista encadeada neste arquivo
 
 int main()
@@ -203,7 +196,7 @@ int main()
         printf("\n");
         printf("d1: %p\n", &d1);
         printf("Dado1: %p || proximo: %p\n", p->_primeiro->_dado, p->_primeiro->_proximo);
-        printf("el1: %p", p->_primeiro);
+        printf("endereço do el1: %p", p->_primeiro);
         printf("\n");
         printf("a posicao do d1 na lista e: %d\n", posicao(p, &d1));
         adicionaNoInicio(p, &d2);
@@ -211,8 +204,9 @@ int main()
         printf("d2: %p\n", &d2);
         printf("\n");
         printf("Dado2: %p || proximo: %p\n", p->_primeiro->_dado, p->_primeiro->_proximo);
+        printf("endereço do el2: %p", p->_primeiro);
         printf("\n");
-        printf("a posicao do d2 na lista e: %d\n", posicao(p, &d1));
+        printf("a posicao do d2 na lista e: %d\n\n", posicao(p, &d1));
     }
     destroiListaEncadeada(p);
 
