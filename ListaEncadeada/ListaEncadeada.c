@@ -105,12 +105,14 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
 {
     printf("Verficando Posicao | \n");
     printf("\n");
+    int i = 0;
     if (contem(umaLista, umDado))
     {
         printf("\n");
         bool achou = false;
         Elemento *el = (Elemento *)malloc(sizeof(Elemento));
-        for (int i = 0; i < umaLista->_quantidade; i++)
+
+        for (i = 0; i < umaLista->_quantidade && !achou; i++)
         {
             if (i == 0)
             {
@@ -130,7 +132,6 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
             if (el->_dado == umDado)
             {
                 achou = true;
-                return i + 1;
                 printf("opa, achei a posicao\n");
             }
             else
@@ -141,7 +142,7 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
 
         free(el);
     }
-    return 0;
+    return i - 1;
 }
 void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
 {
@@ -198,6 +199,13 @@ int main()
         printf("Dado1: %p || proximo: %p\n", p->_primeiro->_dado, p->_primeiro->_proximo);
         printf("\n");
         printf("a posicao do d1 na lista e: %d\n", posicao(p, &d1));
+        adicionaNoInicio(p, &d2);
+        printf("Quantidade: %d || primeiro: %p\n", p->_quantidade, p->_primeiro);
+        printf("d2: %p\n", &d2);
+        printf("\n");
+        printf("Dado2: %p || proximo: %p\n", p->_primeiro->_dado, p->_primeiro->_proximo);
+        printf("\n");
+        printf("a posicao do d2 na lista e: %d\n", posicao(p, &d1));
     }
     destroiListaEncadeada(p);
 
