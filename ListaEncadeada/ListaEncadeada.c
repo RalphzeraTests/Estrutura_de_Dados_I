@@ -130,7 +130,7 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
             if (el->_dado == umDado)
             {
                 achou = true;
-                return i;
+                return i + 1;
                 printf("opa, achei a posicao\n");
             }
             else
