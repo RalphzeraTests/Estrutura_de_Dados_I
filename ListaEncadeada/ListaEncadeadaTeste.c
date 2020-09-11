@@ -195,44 +195,44 @@ void *retiraEspecifico(ListaEncadeada *umaLista, void *umDado)
 
 int main()
 {
-    printf("iniciaListaEncadeada\n");
+    printf("\n Inicio do Teste iniciaListaEncadeada\n");
     printf("\tIniciando lista\n");
     ListaEncadeada *p = iniciaListaEncadeada();
     printf("\tLista é nula? %s\n", (p != NULL) ? "não - OK!" : "sim - ERRO!");
-    printf("\tLista está vazia?%d\n", listaVazia(p));
-    printf("\tDestruindo lista\n");
+    printf("\tLista está vazia? %d\n", listaVazia(p));
+    //printf("\tDestruindo lista\n");
     destroiListaEncadeada(p);
 
-    printf("\nlistaVazia\n");
+    printf("\nInicio do Teste listaVazia\n");
     p = iniciaListaEncadeada();
     int d1 = 10;
-    printf("%d\n", listaVazia(p));
+    printf("A lista esta vazia? %d\n", listaVazia(p) ? "sim - OK" : "não - ERRO!");
     adicionaNoInicio(p, &d1);
-    printf("%d\n", listaVazia(p) == 0);
+    printf("A lista está vazia? %d\n", listaVazia(p) == 0);
     destroiListaEncadeada(p);
 
-    printf("adicionaNoInicio\n");
+    printf("\nInicio do Teste adicionaNoInicio\n");
     p = iniciaListaEncadeada();
     int d2 = 20;
     int d3 = 30;
     adicionaNoInicio(p, &d1);
-    printf("%d\n", p->_quantidade == 1);
-    printf("%d\n", contem(p, &d1) == true);
-    printf("%d\n", posicao(p, &d1) == 1);
+    printf("O tamanho da Lista é 1? %d\n", p->_quantidade == 1);
+    printf("A lista contam d1? %d\n", contem(p, &d1) == true);
+    printf("A posicao do d1? %d\n", posicao(p, &d1) == 1);
     adicionaNoInicio(p, &d2);
-    printf("%d\n", p->_quantidade == 2);
-    printf("%d\n", contem(p, &d2) == true);
-    printf("%d\n", posicao(p, &d2) == 1);
-    printf("%d\n", posicao(p, &d1) == 2);
+    printf("O tamanho da lista é 2? %d\n", p->_quantidade == 2);
+    printf("A lista contem d2? %d\n", contem(p, &d2) == true);
+    printf("A posicao de d2 é 1? %d\n", posicao(p, &d2) == 1);
+    printf("A posicao de d1? %d\n", posicao(p, &d1) == 2);
     adicionaNoInicio(p, &d3);
-    printf("%d\n", p->_quantidade == 3);
-    printf("%d\n", contem(p, &d3) == true);
-    printf("%d\n", posicao(p, &d3) == 1);
-    printf("%d\n", posicao(p, &d2) == 2);
-    printf("%d\n", posicao(p, &d1) == 3);
+    printf("O tamanho da lista é 3? %d\n", p->_quantidade == 3);
+    printf("A lista contem d3? %d\n", contem(p, &d3) == true);
+    printf("A posicao de d3 é 1? %d\n", posicao(p, &d3) == 1);
+    printf("A posicao de d2 é 2? %d\n", posicao(p, &d2) == 2);
+    printf("A posicao de d1 é 3? %d\n", posicao(p, &d1) == 3);
     destroiListaEncadeada(p);
 
-    printf("Inicio do Teste AdicionaNaPosicao\n");
+    printf("\nInicio do Teste AdicionaNaPosicao\n");
     p = iniciaListaEncadeada();
     int d4 = 40;
     adicionaNaPosicao(p, &d1, 1);
@@ -255,7 +255,7 @@ int main()
     printf("A posicao do d1 é 1? %d\n", posicao(p, &d1) == 1);
     destroiListaEncadeada(p);
 
-    printf("Inicio do Teste retiraDoInicio\n");
+    printf("\nInicio do Teste retiraDoInicio\n");
     p = iniciaListaEncadeada();
     int *r;
     adicionaNoInicio(p, &d3);
@@ -275,7 +275,7 @@ int main()
     printf("O tamanho da lista é 0? %d\n", p->_quantidade == 0);
     destroiListaEncadeada(p);
 
-    printf("Inicio do Teste retiraDaPosicao\n");
+    printf("\nInicio do Teste retiraDaPosicao\n");
     p = iniciaListaEncadeada();
     int d5 = 50;
     adicionaNoInicio(p, &d5);
