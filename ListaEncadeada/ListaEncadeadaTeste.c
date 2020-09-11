@@ -30,10 +30,10 @@ ListaEncadeada *iniciaListaEncadeada()
 
 void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
 {
-    printf("   - adicionando no inicio    |  endereço da Lista: %p\n", umaLista);
-    printf("   umDado: %p\n", umDado);
+    //printf("   - adicionando no inicio    |  endereço da Lista: %p\n", umaLista);
+    //printf("   umDado: %p\n", umDado);
     Elemento *el = (Elemento *)malloc(sizeof(Elemento));
-    printf("   endereço do novo elemento: %p\n", el);
+    //printf("   endereço do novo elemento: %p\n", el);
     el->_dado = umDado;
     el->_proximo = umaLista->_primeiro;
     umaLista->_primeiro = el;
@@ -69,15 +69,16 @@ void destroiListaEncadeada(ListaEncadeada *umaLista)
     free(umaLista);
     return;
 }
-
 bool contem(ListaEncadeada *umaLista, void *umDado)
 {
     bool achou = false;
-    //printf("      - procurando se existe\n");
+    printf("      - procurando se existe\n");
     Elemento *el = (Elemento *)malloc(sizeof(Elemento));
+
+    el = umaLista->_primeiro;
     for (int i = 0; i < umaLista->_quantidade; i++)
     {
-        if (!(umaLista->_primeiro == NULL))
+        if (!(listaVazia(umaLista)))
         {
             if (i == 0)
             {
@@ -91,6 +92,7 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
                 }
                 else
                 {
+
                     return achou;
                 }
             }
@@ -98,7 +100,8 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
             if (el->_dado == umDado)
             {
                 achou = true;
-                //printf("      opa, achei\n");
+                printf("      opa, achei\n");
+
                 return achou;
             }
             else
@@ -108,11 +111,12 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
         }
     }
     free(el);
+
     return achou;
 }
 int posicao(ListaEncadeada *umaLista, void *umDado)
 {
-    printf("   - Verficando Posicao | \n");
+    //printf("   - Verficando Posicao | \n");
     //printf("\n");
     int i = 0;
     bool achou = true;
@@ -124,15 +128,15 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
         while (achou)
         {
             i++;
-            printf("   el: %p / el.dado: %p\n", elaux, elaux->_dado);
+            //printf("   el: %p / el.dado: %p\n", elaux, elaux->_dado);
             if (elaux->_dado == umDado)
             {
                 achou = false;
-                printf("   opa, achei a posicao\n");
+                //printf("   opa, achei a posicao\n");
             }
             else
             {
-                printf("   ainda não achei a posicao\n");
+                //printf("   ainda não achei a posicao\n");
                 if (elaux->_proximo == NULL)
                 {
                     achou = false;
@@ -151,6 +155,10 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
 }
 void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
 {
+    if (umaPosicao == 1)
+    {
+        adicionaNoInicio(umaLista, umDado);
+    }
     return;
 }
 void adicionaNoFim(ListaEncadeada *umaLista, void *umDado)
