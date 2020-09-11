@@ -35,21 +35,9 @@ void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
     Elemento *el = (Elemento *)malloc(sizeof(Elemento));
     //printf("\tendereço do novo elemento: %p\n", el);
     el->_dado = umDado;
+    el->_proximo = umaLista->_primeiro;
+    umaLista->_primeiro = el;
 
-    if (umaLista->_quantidade == 0)
-    {
-        umaLista->_primeiro = el;
-        el->_proximo = NULL;
-    }
-    else
-    {
-        Elemento *antigo = umaLista->_primeiro;
-        antigo->_dado = umaLista->_primeiro->_dado;
-        //printf("\tdado do antigo: %p\n", antigo->_dado);
-        antigo->_proximo = umaLista->_primeiro->_proximo;
-        umaLista->_primeiro = el;
-        el->_proximo = antigo;
-    }
     umaLista->_quantidade = umaLista->_quantidade + 1;
 
     return;
@@ -197,7 +185,7 @@ int main()
 {
     printf("\nInicio do Teste iniciaListaEncadeada\n");
     ListaEncadeada *p = iniciaListaEncadeada();
-    printf("Lista é nula? %s\n", (p != NULL) ? "não - OK!" : "sim - ERRO!");
+    printf("Lista é nula? %d\n", (p != NULL));
     printf("Lista está vazia? %d\n", listaVazia(p));
     //printf("\tDestruindo lista\n");
     destroiListaEncadeada(p);
@@ -205,7 +193,7 @@ int main()
     printf("\nInicio do Teste listaVazia\n");
     p = iniciaListaEncadeada();
     int d1 = 10;
-    printf("A lista esta vazia? %s\n", listaVazia(p) ? "sim - OK" : "não - ERRO!");
+    printf("A lista esta vazia? %d\n", listaVazia(p));
     adicionaNoInicio(p, &d1);
     printf("A lista está vazia? %d\n", listaVazia(p) == 0);
     destroiListaEncadeada(p);
