@@ -48,25 +48,34 @@ bool listaVazia(ListaEncadeada *umaLista)
 }
 void destroiListaEncadeada(ListaEncadeada *umaLista)
 {
-    /*printf("   | Destruindo lista encadeada |\n");
+    printf("   | Destruindo lista encadeada |\n");
     printf("   | Percorrendo toda a lista |\n");
-    bool ultimo = true;
-    bool primeiro = true;
-    Elemento *percorre = (Elemento *)malloc(sizeof(Elemento));
-    while (ultimo)
+
+    if (listaVazia(umaLista))
     {
-        if (primeiro)
+        free(umaLista);
+    }
+    else
+    {
+        bool ultimo = true;
+        Elemento *percorre = (Elemento *)malloc(sizeof(Elemento));
+        Elemento *deleta = (Elemento *)malloc(sizeof(Elemento));
+        percorre = umaLista->_primeiro;
+        while (ultimo)
         {
-            percorre = umaLista->_primeiro;
-            printf("   O primeiro elemento é %p", percorre);
-            primeiro = false;
+            printf("   O elemento é %p", percorre);
+            if (percorre->_proximo == NULL)
+            {
+                ultimo = false;
+            }
+            deleta = percorre;
+            percorre = percorre->_proximo;
+            free(deleta);
         }
-        else
-        {
-            ultimo = false;
-        }
-    }*/
-    free(umaLista);
+        free(percorre);
+        free(umaLista);
+    }
+
     return;
 }
 bool contem(ListaEncadeada *umaLista, void *umDado)
