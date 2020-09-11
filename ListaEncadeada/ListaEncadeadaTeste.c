@@ -159,6 +159,10 @@ void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
     {
         adicionaNoInicio(umaLista, umDado);
     }
+    else
+    {
+        adicionaNoInicio(umaLista, umDado);
+    }
     return;
 }
 void adicionaNoFim(ListaEncadeada *umaLista, void *umDado)
@@ -246,12 +250,19 @@ int main()
     destroiListaEncadeada(p);
 
     printf("\nInicio do Teste retiraDoInicio\n");
+    printf("q");
     p = iniciaListaEncadeada();
+    printf("a");
     int *r;
+    printf("b");
     adicionaNoInicio(p, &d3);
+    printf("c");
     adicionaNoInicio(p, &d2);
+    printf("d");
     adicionaNoInicio(p, &d1);
+    printf("e");
     r = (int *)retiraDoInicio(p);
+    printf("f");
     printf("Quem foi removido foi o d1?  -  %d\n", *r == d1);
     printf("O tamanho da lista é 2?      -  %d\n", p->_quantidade == 2);
     printf("A posicao do d2 é 1?         -  %d\n", posicao(p, &d2) == 1);
