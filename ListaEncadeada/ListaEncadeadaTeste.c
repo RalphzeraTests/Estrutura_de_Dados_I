@@ -60,6 +60,24 @@ bool listaVazia(ListaEncadeada *umaLista)
 }
 void destroiListaEncadeada(ListaEncadeada *umaLista)
 {
+    /*printf("   | Destruindo lista encadeada |\n");
+    printf("   | Percorrendo toda a lista |\n");
+    bool ultimo = true;
+    bool primeiro = true;
+    Elemento *percorre = (Elemento *)malloc(sizeof(Elemento));
+    while (ultimo)
+    {
+        if (primeiro)
+        {
+            percorre = umaLista->_primeiro;
+            printf("   O primeiro elemento é %p", percorre);
+            primeiro = false;
+        }
+        else
+        {
+            ultimo = false;
+        }
+    }*/
     free(umaLista);
     return;
 }
@@ -181,16 +199,18 @@ int main()
     printf("\nIniciando Teste iniciaListaEncadeada\n\n");
     ListaEncadeada *p = iniciaListaEncadeada();
     printf("Lista Iniciada? %d\n", p != NULL);
-    printf("Lista esta vazia? %d\n\n", listaVazia(p));
+    printf("Lista esta vazia? %d\n", listaVazia(p));
     destroiListaEncadeada(p);
+    printf("\n\n");
 
     printf("Iniciando Teste listaVazia\n");
     p = iniciaListaEncadeada();
     int d1 = 10;
     printf("Lista esta vazia? %d\n", listaVazia(p));
     adicionaNoInicio(p, &d1);
-    printf("A lista NAO esta vazia? %d\n\n", listaVazia(p) != 0);
+    printf("A lista NAO esta vazia? %d\n", listaVazia(p) != 0);
     destroiListaEncadeada(p);
+    printf("\n\n");
 
     printf("Iniciando Teste adicionaNoInicio\n");
     p = iniciaListaEncadeada();
@@ -210,8 +230,9 @@ int main()
     printf("A lista contem d3? %d\n", contem(p, &d3) == true);
     printf("A posicao de d3 é 1? %d\n", posicao(p, &d3) == 1);
     printf("A posicao de d2 é 2? %d\n", posicao(p, &d2) == 2);
-    printf("A posicao de d1 é 3? %d\n\n", posicao(p, &d1) == 3);
+    printf("A posicao de d1 é 3? %d\n", posicao(p, &d1) == 3);
     destroiListaEncadeada(p);
+    printf("\n\n");
 
     printf("Iniciando Teste AdicionaNaPosicao\n");
     p = iniciaListaEncadeada();
@@ -233,8 +254,9 @@ int main()
     printf("A posicao de d4 é 3? %d\n", posicao(p, &d4) == 3);
     printf("A posicao de d3 é 2? %d\n", posicao(p, &d3) == 2);
     printf("A posicao de d2 é 4? %d\n", posicao(p, &d2) == 4);
-    printf("A posicao de d1 é 1? %d\n\n", posicao(p, &d1) == 1);
+    printf("A posicao de d1 é 1? %d\n", posicao(p, &d1) == 1);
     destroiListaEncadeada(p);
+    printf("\n\n");
 
     printf("Iniciando Teste retiraDoInicio\n");
     p = iniciaListaEncadeada();
@@ -256,6 +278,7 @@ int main()
     printf("d3 que foi retirado? %d\n", *r == d3);
     printf("O tamanho da lista é 0? %d\n", p->_quantidade == 0);
     destroiListaEncadeada(p);
+    printf("\n\n");
 
     printf("Iniciando Teste retiraDaPosicao\n");
     p = iniciaListaEncadeada();
