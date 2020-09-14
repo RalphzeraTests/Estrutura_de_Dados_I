@@ -27,20 +27,28 @@ ListaEncadeada *iniciaListaEncadeada()
 
     return (lista);
 }
-
+void printaTudo(ListaEncadeada *umaLista)
+{
+    printf("\nLista: %p, qtd: %d, primeiro: %p", umaLista, umaLista->_quantidade, umaLista->_primeiro);
+    Elemento *elemento = umaLista->_primeiro;
+    for (int pos = 1; pos <= umaLista->_quantidade; pos++)
+    {
+        printf("\nElemento: %p, dado: %p, proximo: %p", elemento, elemento->_dado, elemento->_proximo);
+        elemento = elemento->_proximo;
+    }
+    printf("\n");
+}
 void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
 {
-    //printf("   - adicionando no inicio    |  endereço da Lista: %p\n", umaLista);
-    //printf("   umDado: %p\n", umDado);
+    printf("   - adicionando no inicio    |  endereço da Lista: %p\n", umaLista);
+    printf("   umDado: %p\n", umDado);
     Elemento *el = (Elemento *)malloc(sizeof(Elemento));
-    //printf("   endereço do novo elemento: %p\n", el);
+    printf("   endereço do novo elemento: %p\n", el);
     el->_dado = umDado;
     el->_proximo = umaLista->_primeiro;
     umaLista->_primeiro = el;
 
     umaLista->_quantidade = umaLista->_quantidade + 1;
-
-    return;
 }
 bool listaVazia(ListaEncadeada *umaLista)
 {
@@ -233,6 +241,7 @@ int main()
     printf("A posicao de d3 é 1?         -  %d\n", posicao(p, &d3) == 1);
     printf("A posicao de d2 é 2?         -  %d\n", posicao(p, &d2) == 2);
     printf("A posicao de d1 é 3?         -  %d\n", posicao(p, &d1) == 3);
+    printaTudo(p);
     destroiListaEncadeada(p);
 
     printf("\nInicio do Teste AdicionaNaPosicao\n");
