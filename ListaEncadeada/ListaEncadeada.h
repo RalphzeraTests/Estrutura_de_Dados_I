@@ -58,8 +58,8 @@ bool listaVazia(ListaEncadeada *umaLista)
 }
 void destroiListaEncadeada(ListaEncadeada *umaLista)
 {
-    printf("   | Destruindo lista encadeada |\n");
-    printf("   | Percorrendo toda a lista |\n");
+    //printf("   | Destruindo lista encadeada |\n");
+    //printf("   | Percorrendo toda a lista |\n");
 
     if (listaVazia(umaLista))
     {
@@ -73,7 +73,7 @@ void destroiListaEncadeada(ListaEncadeada *umaLista)
         percorre = umaLista->_primeiro;
         while (ultimo)
         {
-            printf("   O elemento é %p", percorre);
+            //printf("   O elemento é %p", percorre);
             if (percorre->_proximo == NULL)
             {
                 ultimo = false;
@@ -91,7 +91,7 @@ void destroiListaEncadeada(ListaEncadeada *umaLista)
 bool contem(ListaEncadeada *umaLista, void *umDado)
 {
     bool achou = false;
-    printf("      - procurando se existe\n");
+    //printf("      - procurando se existe\n");
     Elemento *el = (Elemento *)malloc(sizeof(Elemento));
 
     el = umaLista->_primeiro;
@@ -119,7 +119,7 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
             if (el->_dado == umDado)
             {
                 achou = true;
-                printf("      opa, achei\n");
+                //printf("      opa, achei\n");
 
                 return achou;
             }
