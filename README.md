@@ -21,7 +21,22 @@ A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos
 
 Criei pra testar o gtest, mas não funcionou então eu desisti. (consegui na lista)
     
-Observação:
+   
+## Lista Encadeada
+
+    Código para fazer os testes, ja que no moodle é impossivel...
+
+### Arquivos
+
+.</br>
+├── ListaEncadeada</br>
+│   ├── Elemento.h</br>
+│   ├── ListaEncadeada.h</br>
+│   ├── ListaEncadeadaTeste.cpp</br>
+│   ├── lista.exe</br>
+│   └── teste.cpp</br>
+
+### Observação
 
 eu estava tendo um erro no qual quando eu criava um novo ponteiro, ele era igual a outro .sim isso não faz sentido, mas observe :
 
@@ -39,19 +54,3 @@ Depois de dias inteiros depurando o código, pedi para um amigo compilar na máq
 
 ![alt text](https://cdn.discordapp.com/attachments/704406974175117344/755169090871492639/unknown.png)
 E como pode ver, funcionou... Qual o sentido disso? eu não sei.
-
-    
-## Lista Encadeada
-
-    Código para fazer os testes, ja que no moodle é impossivel...
-
-### Arquivos
-
-.</br>
-├── ListaEncadeada</br>
-│   ├── Elemento.h</br>
-│   ├── ListaEncadeada.c</br>
-│   ├── ListaEncadeada.h</br>
-│   ├── ListaEncadeadaTeste.c</br>
-│   ├── lista.exe</br>
-│   └── teste.cpp</br>
