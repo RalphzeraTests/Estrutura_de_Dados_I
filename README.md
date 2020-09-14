@@ -21,8 +21,9 @@ A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos
 
 Criei pra testar o gtest, mas não funcionou então eu desisti. (consegui na lista)
     
-observação de ódio:
-- eu estava tendo um erro no qual quando eu criava um novo ponteiro, ele era igual a outro .sim isso não faz sentido, mas observe :
+Observação:
+
+eu estava tendo um erro no qual quando eu criava um novo ponteiro, ele era igual a outro .sim isso não faz sentido, mas observe :
 
 ![alt text](https://cdn.discordapp.com/attachments/704406974175117344/755170671595880458/unknown.png)
 
