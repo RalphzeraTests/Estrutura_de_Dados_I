@@ -23,15 +23,22 @@ Criei pra testar o gtest, mas não funcionou então eu desisti. (consegui na lis
     
 observação de ódio:
 - eu estava tendo um erro no qual quando eu criava um novo ponteiro, ele era igual a outro .sim isso não faz sentido, mas observe :
+
 ![alt text](https://cdn.discordapp.com/attachments/704406974175117344/755170671595880458/unknown.png)
+
 Este é o código do adiciona no inicio, e como pode ver, ele printa o valor do endereço de memória da lista, do antigo primeiro da lista, o dado ser alocaado no elemento e do novo elemento que eu criei.
+
 MAS, quando eu rodo recebo isso:
+
 ![alt text](https://cdn.discordapp.com/attachments/704406974175117344/755171077449318400/unknown.png)
     
 O endereço da lista, o primeiro elemento dele E O NOVO ELEMENTO QUE EU CRIEI estão com o MESMO endereço de memória, o que simplesmente não faz sentido...
+
 Depois de dias inteiros depurando o código, pedi para um amigo compilar na máquina dele:
+
 ![alt text](https://cdn.discordapp.com/attachments/704406974175117344/755169090871492639/unknown.png)
 E como pode ver, funcionou... Qual o sentido disso? eu não sei.
+
     
 ## Lista Encadeada
 
