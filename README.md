@@ -67,4 +67,5 @@ O endereço da lista, o primeiro elemento dele E O NOVO ELEMENTO QUE EU CRIEI es
 Depois de dias inteiros depurando o código, pedi para um amigo compilar na máquina dele:
 
 ![alt text](https://cdn.discordapp.com/attachments/704406974175117344/755169090871492639/unknown.png)
+
 E como pode ver, funcionou... Qual o sentido disso? eu não sei.
