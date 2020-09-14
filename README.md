@@ -5,6 +5,8 @@
 > Tudo aqui é feito no bash do linux, caso esteja no windows: https://www.youtube.com/watch?time_continue=1&v=xzgwDbe7foQ&feature=emb_title</br>
 > Primeiro instale o libgtest-dev, siga as instruções neste vídeo: https://www.youtube.com/watch?v=kuglfQf17SA&ab_channel=srcmake</br>
 > Caso apenas compile o programa usando a flag -lgtest não irá funcionar</br>
+
+A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos
 - $ g++ teste.cpp -lgtest -lpthread -o out</br>
 - $ ./out</br>
 
