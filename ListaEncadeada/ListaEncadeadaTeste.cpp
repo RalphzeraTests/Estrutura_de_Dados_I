@@ -29,21 +29,22 @@ ListaEncadeada *iniciaListaEncadeada()
 }
 void printaTudo(ListaEncadeada *umaLista)
 {
-    printf("\nLista: %p, qtd: %d, primeiro: %p", umaLista, umaLista->_quantidade, umaLista->_primeiro);
+    //printf("\nLista: %p, qtd: %d, primeiro: %p", umaLista, umaLista->_quantidade, umaLista->_primeiro);
     Elemento *elemento = umaLista->_primeiro;
     for (int pos = 1; pos <= umaLista->_quantidade; pos++)
     {
-        printf("\nElemento: %p, dado: %p, proximo: %p", elemento, elemento->_dado, elemento->_proximo);
+        //printf("\nElemento: %p, dado: %p, proximo: %p", elemento, elemento->_dado, elemento->_proximo);
         elemento = elemento->_proximo;
     }
-    printf("\n");
+    //printf("\n");
 }
 void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
 {
-    printf("   - adicionando no inicio    |  endereço da Lista: %p\n", umaLista);
-    printf("   umDado: %p\n", umDado);
+    //printf("   - adicionando no inicio    |  endereço da Lista: %p\n", umaLista);
+    //printf("   umDado: %p\n", umDado);
+    printf("Antigo primeiro da lista: %p\n", umaLista->_primeiro);
     Elemento *el = (Elemento *)malloc(sizeof(Elemento));
-    printf("   endereço do novo elemento: %p\n", el);
+    printf("Endereço do novo elemento: %p\n", el);
     el->_dado = umDado;
     el->_proximo = umaLista->_primeiro;
     umaLista->_primeiro = el;
@@ -56,8 +57,8 @@ bool listaVazia(ListaEncadeada *umaLista)
 }
 void destroiListaEncadeada(ListaEncadeada *umaLista)
 {
-    printf("   | Destruindo lista encadeada |\n");
-    printf("   | Percorrendo toda a lista |\n");
+    //printf("   | Destruindo lista encadeada |\n");
+    //printf("   | Percorrendo toda a lista |\n");
 
     if (listaVazia(umaLista))
     {
@@ -71,7 +72,7 @@ void destroiListaEncadeada(ListaEncadeada *umaLista)
         percorre = umaLista->_primeiro;
         while (ultimo)
         {
-            printf("   O elemento é %p", percorre);
+            //printf("   O elemento é %p", percorre);
             if (percorre->_proximo == NULL)
             {
                 ultimo = false;
@@ -89,7 +90,7 @@ void destroiListaEncadeada(ListaEncadeada *umaLista)
 bool contem(ListaEncadeada *umaLista, void *umDado)
 {
     bool achou = false;
-    printf("      - procurando se existe\n");
+    //printf("      - procurando se existe\n");
     Elemento *el = (Elemento *)malloc(sizeof(Elemento));
 
     el = umaLista->_primeiro;
@@ -117,7 +118,7 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
             if (el->_dado == umDado)
             {
                 achou = true;
-                printf("      opa, achei\n");
+                //printf("      opa, achei\n");
 
                 return achou;
             }
@@ -220,6 +221,7 @@ int main()
     printf("A lista esta vazia?          -  %d\n", listaVazia(p));
     adicionaNoInicio(p, &d1);
     printf("A lista NAO está vazia?      -  %d\n", !listaVazia(p));
+    printaTudo(p);
     destroiListaEncadeada(p);
 
     printf("\nInicio do Teste adicionaNoInicio\n");
@@ -227,10 +229,12 @@ int main()
     int d2 = 20;
     int d3 = 30;
     adicionaNoInicio(p, &d1);
+    printaTudo(p);
     printf("O tamanho da Lista é 1?      -  %d\n", p->_quantidade == 1);
     printf("A lista contem d1?           -  %d\n", contem(p, &d1) == true);
     printf("A posicao do d1 é 1?         -  %d\n", posicao(p, &d1) == 1);
     adicionaNoInicio(p, &d2);
+    printaTudo(p);
     printf("O tamanho da lista é 2?      -  %d\n", p->_quantidade == 2);
     printf("A lista contem d2?           -  %d\n", contem(p, &d2) == true);
     printf("A posicao de d2 é 1?         -  %d\n", posicao(p, &d2) == 1);
@@ -241,7 +245,7 @@ int main()
     printf("A posicao de d3 é 1?         -  %d\n", posicao(p, &d3) == 1);
     printf("A posicao de d2 é 2?         -  %d\n", posicao(p, &d2) == 2);
     printf("A posicao de d1 é 3?         -  %d\n", posicao(p, &d1) == 3);
-    printaTudo(p);
+
     destroiListaEncadeada(p);
 
     printf("\nInicio do Teste AdicionaNaPosicao\n");
