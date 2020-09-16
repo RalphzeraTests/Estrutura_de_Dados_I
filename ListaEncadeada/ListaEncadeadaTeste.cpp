@@ -17,16 +17,6 @@ typedef struct
     Elemento *_primeiro;
     int _quantidade;
 } ListaEncadeada;
-
-ListaEncadeada *iniciaListaEncadeada()
-{
-
-    ListaEncadeada *lista = (ListaEncadeada *)malloc(sizeof(ListaEncadeada));
-    lista->_primeiro = NULL;
-    lista->_quantidade = 0;
-
-    return (lista);
-}
 void printaTudo(ListaEncadeada *umaLista)
 {
     //printf("\nLista: %p, qtd: %d, primeiro: %p", umaLista, umaLista->_quantidade, umaLista->_primeiro);
@@ -38,6 +28,16 @@ void printaTudo(ListaEncadeada *umaLista)
     }
     //printf("\n");
 }
+ListaEncadeada *iniciaListaEncadeada()
+{
+
+    ListaEncadeada *lista = (ListaEncadeada *)malloc(sizeof(ListaEncadeada));
+    lista->_primeiro = NULL;
+    lista->_quantidade = 0;
+
+    return (lista);
+}
+
 void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
 {
     //printf("   - adicionando no inicio    |  endereço da Lista: %p\n", umaLista);

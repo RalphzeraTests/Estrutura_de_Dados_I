@@ -38,19 +38,19 @@ ListaEncadeada *iniciaListaEncadeada()
 
     return (lista);
 }
+
 void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
 {
     //printf("   - adicionando no inicio    |  endereço da Lista: %p\n", umaLista);
     //printf("   umDado: %p\n", umDado);
+    //printf("Antigo primeiro da lista: %p\n", umaLista->_primeiro);
     Elemento *el = (Elemento *)malloc(sizeof(Elemento));
-    //printf("   endereço do novo elemento: %p\n", el);
+    //printf("Endereço do novo elemento: %p\n", el);
     el->_dado = umDado;
     el->_proximo = umaLista->_primeiro;
     umaLista->_primeiro = el;
 
     umaLista->_quantidade = umaLista->_quantidade + 1;
-
-    return;
 }
 bool listaVazia(ListaEncadeada *umaLista)
 {
@@ -204,5 +204,4 @@ void *retiraEspecifico(ListaEncadeada *umaLista, void *umDado)
 {
     return NULL;
 }
-
 #endif /* LISTAENCADEADA_H */
