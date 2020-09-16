@@ -10,6 +10,7 @@ A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos
 - $ g++ teste.cpp -lgtest -lpthread -o out</br>
 - $ ./out</br>
 
+
     Assim o seu programa será compilado e será possivel rodá-lo.
     Contudo, não consegui manter a implementação dos métodos da ListaEncadeada em um arquivo separado, por isso mantive dentro do ListaEncadeada.h, mas para questões de testes funciona, já que no moodle é possível matê-las separadas.
 
@@ -18,8 +19,9 @@ A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos
 
 ## Racionais
 
-    Criei pra testar o gtest, mas não funcionou então eu desisti. (consegui na lista)
-
+Criei pra testar o gtest, mas não funcionou então eu desisti. (consegui na lista)
+    
+   
 ## Lista Encadeada
 
     Código para fazer os testes, ja que no moodle é impossivel...
@@ -29,8 +31,9 @@ A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos
 .</br>
 ├── ListaEncadeada</br>
 │   ├── Elemento.h</br>
-│   ├── ListaEncadeada.c</br>
 │   ├── ListaEncadeada.h</br>
-│   ├── ListaEncadeadaTeste.c</br>
+│   ├── ListaEncadeadaTeste.cpp</br>
 │   ├── lista.exe</br>
 │   └── teste.cpp</br>
+
+
