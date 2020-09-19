@@ -44,7 +44,6 @@ void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
     //printf("   - adicionando no inicio    |  endereço da Lista: %p\n", umaLista);
     //printf("   umDado: %p\n", umDado);
     //printf("Antigo primeiro da lista: %p\n", umaLista->_primeiro);
-    Elemento *elemento = umaLista->_primeiro;
     if (umaLista->_primeiro != NULL)
     {
         //printf("umaLista->_primeiro->dado: %p\n", elemento->_dado);
@@ -195,8 +194,6 @@ void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
         {
             Elemento *el = (Elemento *)calloc(1, sizeof(Elemento));
             Elemento *aux = achaEndereco(umaPosicao, umaLista);
-            //printf("    umDado: %p\n", umDado);
-            //printf("    aux: %p\n", aux);
             el->_dado = umDado;
             el->_proximo = aux->_proximo;
 
@@ -214,6 +211,21 @@ void adicionaNoFim(ListaEncadeada *umaLista, void *umDado)
 }
 void *retiraDoInicio(ListaEncadeada *umaLista)
 {
+    Elemento *aux;
+    void *retorno;
+    if (listaVazia(umaLista))
+    {
+        //throw
+    }
+    else
+    {
+        aux = umaLista->_primeiro;
+        retorno = aux->_dado;
+        umaLista->_primeiro = aux->_proximo;
+        umaLista->_quantidade = umaLista->_quantidade - 1;
+        free(aux);
+        return retorno;
+    }
     return NULL;
 }
 void *retiraDaPosicao(ListaEncadeada *umaLista, int umaPosicao)
@@ -280,7 +292,7 @@ int main()
     adicionaNaPosicao(p, &d1, 1);
     printaTudo(p);
     printf("O tamanho da lista é 1?      -  %d\n", p->_quantidade == 1);
-    printf("A posicção do d1 é 1?        -  %d\n", posicao(p, &d1) == 1);
+    printf("A posição do d1 é 1?         -  %d\n", posicao(p, &d1) == 1);
     adicionaNaPosicao(p, &d2, 2);
     printaTudo(p);
     printf("O tamanho da lista é 2?      -  %d\n", p->_quantidade == 2);
