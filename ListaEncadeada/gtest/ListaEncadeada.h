@@ -44,10 +44,16 @@ void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
     //printf("   - adicionando no inicio    |  endereço da Lista: %p\n", umaLista);
     //printf("   umDado: %p\n", umDado);
     //printf("Antigo primeiro da lista: %p\n", umaLista->_primeiro);
-    Elemento *el = (Elemento *)malloc(sizeof(Elemento));
-    //printf("Endereço do novo elemento: %p\n", el);
+    Elemento *elemento = umaLista->_primeiro;
+    if (umaLista->_primeiro != NULL)
+    {
+        //printf("umaLista->_primeiro->dado: %p\n", elemento->_dado);
+    }
+    Elemento *el = (Elemento *)calloc(1, sizeof(Elemento));
+    //printf("     Endereço do novo elemento: %p\n", el);
     el->_dado = umDado;
     el->_proximo = umaLista->_primeiro;
+
     umaLista->_primeiro = el;
 
     umaLista->_quantidade = umaLista->_quantidade + 1;
@@ -60,8 +66,8 @@ void destroiListaEncadeada(ListaEncadeada *umaLista)
 {
     //printf("   | Destruindo lista encadeada |\n");
     //printf("   | Percorrendo toda a lista |\n");
-
-    if (listaVazia(umaLista))
+    free(umaLista);
+    /*if (listaVazia(umaLista))
     {
         free(umaLista);
     }
@@ -84,7 +90,7 @@ void destroiListaEncadeada(ListaEncadeada *umaLista)
         }
         free(percorre);
         free(umaLista);
-    }
+    }*/
 
     return;
 }
@@ -92,22 +98,20 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
 {
     bool achou = false;
     //printf("      - procurando se existe\n");
-    Elemento *el = (Elemento *)malloc(sizeof(Elemento));
-
-    el = umaLista->_primeiro;
+    Elemento *aux = umaLista->_primeiro;
     for (int i = 0; i < umaLista->_quantidade; i++)
     {
         if (!(listaVazia(umaLista)))
         {
             if (i == 0)
             {
-                el = umaLista->_primeiro;
+                aux = umaLista->_primeiro;
             }
             else
             {
-                if ((el->_proximo != NULL))
+                if ((aux->_proximo != NULL))
                 {
-                    el = el->_proximo;
+                    aux = aux->_proximo;
                 }
                 else
                 {
@@ -115,11 +119,11 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
                     return achou;
                 }
             }
-            //printf("      el: %p / el.dado: %p\n", el, el->_dado);
-            if (el->_dado == umDado)
+            //printf("      aux: %p / aux.dado: %p\n", aux, aux->_dado);
+            if (aux->_dado == umDado)
             {
                 achou = true;
-                //printf("      opa, achei\n");
+                // printf("      opa, achei\n");
 
                 return achou;
             }
@@ -129,7 +133,6 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
             }
         }
     }
-    free(el);
 
     return achou;
 }
@@ -168,9 +171,17 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
         }
     }
 
-    free(elaux);
-
     return i;
+}
+Elemento *achaEndereco(int pos, ListaEncadeada *lista)
+{
+    //printf("\n\n   Lista: %p, qtd: %d, primeiro: %p", umaLista, umaLista->_quantidade, umaLista->_primeiro);
+    Elemento *elemento = lista->_primeiro;
+    for (int aux = 1; aux < pos - 1; aux++)
+    {
+        elemento = elemento->_proximo;
+    }
+    return elemento;
 }
 void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
 {
@@ -180,7 +191,20 @@ void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
     }
     else
     {
-        adicionaNoInicio(umaLista, umDado);
+        if (umaLista->_quantidade <= umaPosicao && umaPosicao > 0 && !(listaVazia(umaLista)))
+        {
+            Elemento *el = (Elemento *)calloc(1, sizeof(Elemento));
+            Elemento *aux = achaEndereco(umaPosicao, umaLista);
+            //printf("    umDado: %p\n", umDado);
+            //printf("    aux: %p\n", aux);
+            el->_dado = umDado;
+            el->_proximo = aux->_proximo;
+
+            aux->_proximo = el;
+
+            umaLista->_quantidade = umaLista->_quantidade + 1;
+        }
+        //adicionaNoInicio(umaLista, umDado);
     }
     return;
 }
