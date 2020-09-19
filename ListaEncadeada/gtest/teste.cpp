@@ -132,11 +132,12 @@ TEST(ListaEncadeadaTest, RetiraDaPosicao)
 {
 
     ListaEncadeada *p = iniciaListaEncadeada();
-    int d1 = 10;
-    int d2 = 20;
-    int d3 = 30;
-    int d4 = 40;
+
     int d5 = 50;
+    int d4 = 40;
+    int d3 = 30;
+    int d2 = 20;
+    int d1 = 10;
     int *r;
 
     adicionaNoInicio(p, &d5);
@@ -144,22 +145,24 @@ TEST(ListaEncadeadaTest, RetiraDaPosicao)
     adicionaNoInicio(p, &d3);
     adicionaNoInicio(p, &d2);
     adicionaNoInicio(p, &d1);
-
+    printaTudo(p);
     EXPECT_THROW(retiraDaPosicao(p, -1), posicao_invalida_exception);
     EXPECT_THROW(retiraDaPosicao(p, 0), posicao_invalida_exception);
     EXPECT_THROW(retiraDaPosicao(p, 6), posicao_invalida_exception);
     EXPECT_THROW(retiraDaPosicao(p, 7), posicao_invalida_exception);
-    /*
+
     r = (int *)retiraDaPosicao(p, 5);
+    printaTudo(p);
     ASSERT_EQ(*r, d5);
     ASSERT_EQ(p->_quantidade, 4);
     ASSERT_EQ(posicao(p, &d2), 2);
 
     r = (int *)retiraDaPosicao(p, 3);
+    printaTudo(p);
     ASSERT_EQ(*r, d3);
     ASSERT_EQ(p->_quantidade, 3);
     ASSERT_EQ(posicao(p, &d4), 3);
-
+    /*
     r = (int *)retiraDaPosicao(p, 2);
     ASSERT_EQ(*r, d2);
     ASSERT_EQ(p->_quantidade, 2);

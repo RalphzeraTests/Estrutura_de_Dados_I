@@ -183,7 +183,7 @@ void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
     }
     else
     {
-        if (umaLista->_quantidade <= umaPosicao && umaPosicao > 0 && !(listaVazia(umaLista)))
+        if (umaLista->_quantidade >= umaPosicao && umaPosicao > 0 && !(listaVazia(umaLista)))
         {
             Elemento *el = (Elemento *)calloc(1, sizeof(Elemento));
             Elemento *aux = achaEndereco(umaPosicao, umaLista);

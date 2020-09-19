@@ -29,6 +29,19 @@ typedef struct
     int _quantidade;
 } ListaEncadeada;
 
+void printaTudo(ListaEncadeada *umaLista)
+{
+    printf("\n\n   Lista: %p, qtd: %d, primeiro: %p", umaLista, umaLista->_quantidade, umaLista->_primeiro);
+    Elemento *elemento = umaLista->_primeiro;
+    for (int pos = 1; pos <= umaLista->_quantidade; pos++)
+    {
+        printf("\n   Elemento: %p, dado: %p, proximo: %p", elemento, elemento->_dado, elemento->_proximo);
+        elemento = elemento->_proximo;
+    }
+
+    printf("\n\n");
+}
+
 ListaEncadeada *iniciaListaEncadeada()
 {
 
@@ -177,13 +190,15 @@ Elemento *achaEndereco(int pos, ListaEncadeada *lista)
 }
 void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
 {
-    if (umaPosicao == 1)
+
+    if (umaLista->_quantidade + 1 >= umaPosicao && umaPosicao > 0)
     {
-        adicionaNoInicio(umaLista, umDado);
-    }
-    else
-    {
-        if (umaLista->_quantidade <= umaPosicao && umaPosicao > 0 && !(listaVazia(umaLista)))
+
+        if (umaPosicao == 1)
+        {
+            adicionaNoInicio(umaLista, umDado);
+        }
+        else
         {
             Elemento *el = (Elemento *)calloc(1, sizeof(Elemento));
             Elemento *aux = achaEndereco(umaPosicao, umaLista);
@@ -194,12 +209,13 @@ void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
 
             umaLista->_quantidade = umaLista->_quantidade + 1;
         }
-        else
-        {
-            throw posicao_invalida_exception();
-        }
-        //adicionaNoInicio(umaLista, umDado);
     }
+    else
+    {
+        throw posicao_invalida_exception();
+    }
+    //adicionaNoInicio(umaLista, umDado);
+
     return;
 }
 void adicionaNoFim(ListaEncadeada *umaLista, void *umDado)
@@ -216,7 +232,6 @@ void *retiraDoInicio(ListaEncadeada *umaLista)
     }
     else
     {
-
         aux = umaLista->_primeiro;
         retorno = aux->_dado;
         umaLista->_primeiro = aux->_proximo;
@@ -226,25 +241,41 @@ void *retiraDoInicio(ListaEncadeada *umaLista)
     }
     return NULL;
 }
+
 void *retiraDaPosicao(ListaEncadeada *umaLista, int umaPosicao)
 {
-    if (listaVazia(umaLista))
+    Elemento *aux, *elemento;
+    void *retorno;
+    if (umaLista->_quantidade >= umaPosicao && umaPosicao > 0)
     {
-        throw lista_encadeada_vazia_exception();
-    }
-    else
-    {
-        if (umaLista->_quantidade <= umaPosicao && umaPosicao > 0)
+        if (listaVazia(umaLista))
+        {
+            throw lista_encadeada_vazia_exception();
+        }
+        else
         {
             if (umaPosicao == 1)
             {
                 return retiraDoInicio(umaLista);
             }
+            else
+            {
+                aux = umaLista->_primeiro;
+                for (int i = 1; i < umaPosicao - 2; i++)
+                {
+                    aux = aux->_proximo;
+                }
+                elemento = aux->_proximo;
+                retorno = elemento->_dado;
+                aux->_proximo = elemento->_proximo;
+                umaLista->_quantidade = umaLista->_quantidade - 1;
+                free(elemento) return retorno;
+            }
         }
-        else
-        {
-            throw posicao_invalida_exception();
-        }
+    }
+    else
+    {
+        throw posicao_invalida_exception();
     }
 
     return NULL;
