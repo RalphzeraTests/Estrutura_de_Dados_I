@@ -230,7 +230,7 @@ void *retiraDoInicio(ListaEncadeada *umaLista)
 
 void *retiraDaPosicao(ListaEncadeada *umaLista, int umaPosicao)
 {
-    Elemento *aux, *elemento;
+    Elemento *elemento;
     void *retorno;
     if (umaLista->_quantidade >= umaPosicao && umaPosicao > 0)
     {
@@ -246,14 +246,10 @@ void *retiraDaPosicao(ListaEncadeada *umaLista, int umaPosicao)
             }
             else
             {
-                aux = umaLista->_primeiro;
-                for (int i = 1; i < umaPosicao - 1; i++)
-                {
-                    aux = aux->_proximo;
-                }
-                elemento = aux->_proximo;
+
+                elemento = achaEndereco(umaPosicao, umaLista);
+                elemento = elemento->_proximo;
                 retorno = elemento->_dado;
-                aux->_proximo = elemento->_proximo;
                 umaLista->_quantidade = umaLista->_quantidade - 1;
                 free(elemento);
                 return retorno;

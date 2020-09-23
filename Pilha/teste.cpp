@@ -15,7 +15,7 @@ TEST(PilhaTest, Init)
 
 TEST(PilhaTest, PilhaVazia)
 {
-    /*Pilha *p = iniciaPilha();
+    Pilha *p = iniciaPilha();
     int d1 = 10;
 
     ASSERT_EQ(pilhaVazia(p), true);
@@ -24,12 +24,12 @@ TEST(PilhaTest, PilhaVazia)
 
     ASSERT_EQ(pilhaVazia(p), false);
 
-    destroiPilha(p);*/
+    destroiPilha(p);
 }
 
 TEST(PilhaTest, Push)
 {
-    /*Pilha *p = iniciaPilha();
+    Pilha *p = iniciaPilha();
     int d1 = 10;
     int d2 = 20;
     int d3 = 30;
@@ -52,12 +52,12 @@ TEST(PilhaTest, Push)
     ASSERT_EQ(posicao(p, &d2), 2);
     ASSERT_EQ(posicao(p, &d1), 3);
 
-    destroiPilha(p);*/
+    destroiPilha(p);
 }
 
 TEST(PilhaTest, Pop)
 {
-    /*Pilha *p = iniciaPilha();
+    Pilha *p = iniciaPilha();
     int d1 = 10;
     int d2 = 20;
     int d3 = 30;
@@ -85,7 +85,7 @@ TEST(PilhaTest, Pop)
 
     EXPECT_THROW(pop(p), lista_encadeada_vazia_exception);
 
-    destroiPilha(p);*/
+    destroiPilha(p);
 }
 
 int main(int argc, char **argv)
