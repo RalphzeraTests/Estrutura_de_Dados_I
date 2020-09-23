@@ -261,7 +261,7 @@ void *retiraDaPosicao(ListaEncadeada *umaLista, int umaPosicao)
             else
             {
                 aux = umaLista->_primeiro;
-                for (int i = 1; i < umaPosicao - 2; i++)
+                for (int i = 1; i < umaPosicao - 1; i++)
                 {
                     aux = aux->_proximo;
                 }
@@ -269,7 +269,8 @@ void *retiraDaPosicao(ListaEncadeada *umaLista, int umaPosicao)
                 retorno = elemento->_dado;
                 aux->_proximo = elemento->_proximo;
                 umaLista->_quantidade = umaLista->_quantidade - 1;
-                free(elemento) return retorno;
+                free(elemento);
+                return retorno;
             }
         }
     }

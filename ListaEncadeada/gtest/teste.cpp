@@ -162,7 +162,7 @@ TEST(ListaEncadeadaTest, RetiraDaPosicao)
     ASSERT_EQ(*r, d3);
     ASSERT_EQ(p->_quantidade, 3);
     ASSERT_EQ(posicao(p, &d4), 3);
-    /*
+
     r = (int *)retiraDaPosicao(p, 2);
     ASSERT_EQ(*r, d2);
     ASSERT_EQ(p->_quantidade, 2);
@@ -178,7 +178,7 @@ TEST(ListaEncadeadaTest, RetiraDaPosicao)
     ASSERT_EQ(p->_quantidade, 0);
     ASSERT_EQ(contem(p, &d4), false);
 
-    destroiListaEncadeada(p);*/
+    destroiListaEncadeada(p);
 }
 
 int main(int argc, char **argv)
