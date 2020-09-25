@@ -133,7 +133,7 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
     //printf("\n");
     int i = 0;
     bool achou = true;
-    Elemento *elaux = (Elemento *)malloc(sizeof(Elemento));
+    Elemento *elaux;
     if (contem(umaLista, umDado))
     {
         //printf("\n");
