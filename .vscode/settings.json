@@ -1,4 +1,9 @@
 {
   "C_Cpp.errorSquiggles": "Disabled",
-  "terminal.integrated.shell.windows": "Windows.Terminal.Wsl"
+  "terminal.integrated.shell.windows": "Windows.Terminal.Wsl",
+  "files.associations": {
+    "chrono": "cpp",
+    "random": "cpp",
+    "limits": "cpp"
+  }
 }
