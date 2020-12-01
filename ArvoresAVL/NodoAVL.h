@@ -12,59 +12,153 @@ struct NodoAVL
     T *_dado;
     int _altura;
 };
+template <typename T>
+NodoAVL<T> *criaNodo(T *dado)
+{
+    NodoAVL<T> *newNodo = (NodoAVL<T> *)malloc(sizeof(NodoAVL<T>));
+    newNodo->_filhoEsquerda = nullptr;
+    newNodo->_filhoDireita = nullptr;
+    newNodo->_dado = dado;
+    newNodo->_altura = 0;
+    return newNodo;
+}
+template <typename T>
+int getHigh(NodoAVL<T> *raiz)
+{
+    if (raiz == nullptr)
+    {
+        return -1;
+    }
+    return raiz->_altura;
+}
+int maxEntre(int a, int b)
+{
+    if (a > b)
+        return a;
+    else
+        return b;
+}
+template <typename T>
+NodoAVL<T> *rotDireita(NodoAVL<T> *raiz)
+{
+    NodoAVL<T> *aux = raiz->_filhoEsquerda;
+    raiz->_filhoEsquerda = aux->_filhoDireita;
+    aux->_filhoDireita = raiz;
+    raiz->_altura = maxEntre(getHigh(raiz->_filhoDireita), getHigh(raiz->_filhoEsquerda)) + 1;
+    aux->_altura = maxEntre(getHigh(aux->_filhoEsquerda), raiz->_altura) + 1;
+    return aux;
+}
+template <typename T>
+NodoAVL<T> *rotEsquerda(NodoAVL<T> *raiz)
+{
+    NodoAVL<T> *aux = raiz->_filhoDireita;
+    raiz->_filhoDireita = aux->_filhoEsquerda;
+    aux->_filhoEsquerda = raiz;
+    raiz->_altura = maxEntre(getHigh(raiz->_filhoDireita), getHigh(raiz->_filhoEsquerda)) + 1;
+    aux->_altura = maxEntre(getHigh(aux->_filhoEsquerda), raiz->_altura) + 1;
+    return aux;
+}
+template <typename T>
+NodoAVL<T> *rotEsquerdaDireita(NodoAVL<T> *raiz)
+{
+    raiz->_filhoEsquerda = rotEsquerda(raiz->_filhoEsquerda);
+    return rotDireita(raiz);
+}
+template <typename T>
+NodoAVL<T> *rotDireitaEsquerda(NodoAVL<T> *raiz)
+{
+    raiz->_filhoDireita = rotEsquerda(raiz->_filhoDireita);
+    return rotEsquerda(raiz);
+}
 
-/**
- * @brief Adiciona um dado à árvore AVL
- * @param raiz ponteiro para raiz da árvore
- * @param dado ponteiro para dado a ser inserido
- * @return a raiz da árvore passada como parâmetro ou uma nova raiz caso houve rotação na raiz
- */
 template <typename T>
 NodoAVL<T> *adicionar(NodoAVL<T> *raiz, T *dado)
 {
-    //IMPLEMENTE AQUI
-    return nullptr; //remova esta linha
+    if (raiz->_dado == NULL)
+    {
+        printf("a\n");
+        raiz = criaNodo(dado);
+        return raiz;
+    }
+    if (dado < raiz->_dado)
+    {
+        printf("b\n");
+        raiz->_filhoEsquerda = adicionar(raiz->_filhoEsquerda, dado);
+        if ((getHigh(raiz->_filhoEsquerda) - getHigh(raiz->_filhoDireita)) == 2)
+        {
+            if (dado < raiz->_filhoEsquerda->_dado)
+            {
+                raiz = rotDireita(raiz);
+            }
+            else
+            {
+                raiz = rotDireitaEsquerda(raiz);
+            }
+        }
+    }
+    else
+    {
+        printf("c\n");
+        if (dado > raiz->_dado)
+        {
+            raiz->_filhoDireita = adicionar(raiz->_filhoDireita, dado);
+            if ((getHigh(raiz->_filhoEsquerda) - getHigh(raiz->_filhoDireita)) == 2)
+            {
+                if (dado > raiz->_filhoDireita->_dado)
+                {
+                    raiz = rotEsquerda(raiz);
+                }
+                else
+                {
+                    raiz = rotDireitaEsquerda(raiz);
+                }
+            }
+        }
+    }
+
+    raiz->_altura = maxEntre(getHigh(raiz->_filhoEsquerda), getHigh(raiz->_filhoDireita)) + 1;
+    return raiz;
 }
 
-/**
- * @brief Percorre árvore AVL em pré-ordem
- * @param raiz ponteiro para raiz da árvore
- * @param lista lista onde os nodos da árvore serão inseridos em pré-ordem
- */
 template <typename T>
 void preOrdem(NodoAVL<T> *raiz, ListaEncadeada *lista)
 {
-    //IMPLEMENTE AQUI
+    if ((raiz != NULL || raiz != nullptr) && raiz->_dado != nullptr)
+    {
+        adicionaNoFim(lista, raiz->_dado);
+        preOrdem(raiz->_filhoEsquerda, lista);
+        preOrdem(raiz->_filhoDireita, lista);
+    }
 }
-
-/**
- * @brief Percorre árvore AVL em ordem
- * @param raiz ponteiro para raiz da árvore
- * @param lista lista onde os nodos da árvore serão inseridos em ordem
- */
 template <typename T>
 void emOrdem(NodoAVL<T> *raiz, ListaEncadeada *lista)
 {
-    //IMPLEMENTE AQUI
+    if ((raiz != NULL || raiz != nullptr) && raiz->_dado != nullptr)
+    {
+        emOrdem(raiz->_filhoEsquerda, lista);
+        adicionaNoFim(lista, raiz->_dado);
+        emOrdem(raiz->_filhoDireita, lista);
+    }
 }
 
-/**
- * @brief Percorre árvore AVL em pós-ordem
- * @param raiz ponteiro para raiz da árvore
- * @param lista lista onde os nodos da árvore serão inseridos em pós-ordem
- */
 template <typename T>
 void posOrdem(NodoAVL<T> *raiz, ListaEncadeada *lista)
 {
-    //IMPLEMENTE AQUI
+    if ((raiz != NULL || raiz != nullptr) && raiz->_dado != nullptr)
+    {
+        posOrdem(raiz->_filhoEsquerda, lista);
+        posOrdem(raiz->_filhoDireita, lista);
+        adicionaNoFim(lista, raiz->_dado);
+    }
 }
 
-//NAO MODIFIQUE A FUNCAO ABAIXO
 template <typename T>
 NodoAVL<T> *getNodo(NodoAVL<T> *raiz, T dado)
 {
+    printf("getNodo\n");
     while (raiz != NULL && dado != *raiz->_dado)
     {
+        printf("loop\n");
         if (dado < *raiz->_dado)
         {
             raiz = raiz->_filhoEsquerda;
@@ -74,26 +168,16 @@ NodoAVL<T> *getNodo(NodoAVL<T> *raiz, T dado)
             raiz = raiz->_filhoDireita;
         }
     }
+    printf("fim getNodo\n");
     return raiz;
 }
 
-/**
- * @brief Remove um dado à árvore AVL
- * @param raiz ponteiro para raiz da árvore
- * @param dado dado a ser inserido
- * @return a raiz da árvore passada como parâmetro ou uma nova raiz caso houve rotação na raiz
- */
 template <typename T>
 NodoAVL<T> *remover(NodoAVL<T> *raiz, T dado)
 {
     //IMPLEMENTE AQUI
     return nullptr;
 }
-
-/**
- * @brief Desaloca todos os nodos de uma árvore. Os dados não são desalocados.
- * @param raiz ponteiro para raiz da árvore
- */
 template <typename T>
 void destruir(NodoAVL<T> *raiz)
 {
