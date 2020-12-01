@@ -164,12 +164,9 @@ T *remover(Nodo<T> *raiz, T dado)
     Nodo<T> *rem;
     if (remP == nullptr || remP->_dado == nullptr)
     {
-        //printf("a\n");
-        //printf("raizD == dado: %d\n", *raiz->_dado == dado);
 
         if (dado == *raiz->_dado)
         {
-            //printf("ama");
             auxD = raiz->_dado;
             if (raiz->_filhoDireita != nullptr)
             {
@@ -193,7 +190,6 @@ T *remover(Nodo<T> *raiz, T dado)
     }
     else
     {
-        //printf("dadoP: %d || dado: %d\n", *remP->_dado, dado);
         if (dado > *remP->_dado)
         {
             if (remP->_filhoDireita == nullptr)
@@ -212,13 +208,9 @@ T *remover(Nodo<T> *raiz, T dado)
             dir = false;
         }
     }
-
-    //printf("c\n");
     auxD = rem->_dado;
-    //printf("auxD: %d\n", *auxD);
     if (rem->_filhoEsquerda == nullptr && rem->_filhoDireita == nullptr)
     {
-        //printf("d\n");
         free(rem);
         if (dir)
         {
@@ -231,7 +223,6 @@ T *remover(Nodo<T> *raiz, T dado)
     }
     else
     {
-        //printf("minDirRem: %d", *getMinDIr(rem->_filhoDireita)->_dado);
         getMinDIr(rem->_filhoDireita)->_filhoEsquerda = rem->_filhoEsquerda;
         remP->_filhoEsquerda = rem->_filhoDireita;
         free(rem);
