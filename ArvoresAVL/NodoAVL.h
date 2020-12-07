@@ -67,26 +67,26 @@ NodoAVL<T> *rotEsquerdaDireita(NodoAVL<T> *raiz)
 template <typename T>
 NodoAVL<T> *rotDireitaEsquerda(NodoAVL<T> *raiz)
 {
-    raiz->_filhoDireita = rotEsquerda(raiz->_filhoDireita);
+    raiz->_filhoDireita = rotDireita(raiz->_filhoDireita);
     return rotEsquerda(raiz);
 }
 
 template <typename T>
-NodoAVL<T> *adicionar(NodoAVL<T> *raiz, T *dado)
+NodoAVL<T> *insere(NodoAVL<T> *raiz, T *dado)
 {
-    if (raiz->_dado == NULL)
+    printf("sexo\n");
+    if (raiz == nullptr)
     {
-        printf("a\n");
-        raiz = criaNodo(dado);
-        return raiz;
+        printf("Raiz nula\n");
+        return criaNodo(dado);
     }
-    if (dado < raiz->_dado)
+    if (*dado < *raiz->_dado)
     {
         printf("b\n");
-        raiz->_filhoEsquerda = adicionar(raiz->_filhoEsquerda, dado);
+        raiz->_filhoEsquerda = insere(raiz->_filhoEsquerda, dado);
         if ((getHigh(raiz->_filhoEsquerda) - getHigh(raiz->_filhoDireita)) == 2)
         {
-            if (dado < raiz->_filhoEsquerda->_dado)
+            if (*dado < *raiz->_filhoEsquerda->_dado)
             {
                 raiz = rotDireita(raiz);
             }
@@ -99,12 +99,12 @@ NodoAVL<T> *adicionar(NodoAVL<T> *raiz, T *dado)
     else
     {
         printf("c\n");
-        if (dado > raiz->_dado)
+        if (*dado > *raiz->_dado)
         {
-            raiz->_filhoDireita = adicionar(raiz->_filhoDireita, dado);
+            raiz->_filhoDireita = insere(raiz->_filhoDireita, dado);
             if ((getHigh(raiz->_filhoEsquerda) - getHigh(raiz->_filhoDireita)) == 2)
             {
-                if (dado > raiz->_filhoDireita->_dado)
+                if (*dado > *raiz->_filhoDireita->_dado)
                 {
                     raiz = rotEsquerda(raiz);
                 }
@@ -117,6 +117,26 @@ NodoAVL<T> *adicionar(NodoAVL<T> *raiz, T *dado)
     }
 
     raiz->_altura = maxEntre(getHigh(raiz->_filhoEsquerda), getHigh(raiz->_filhoDireita)) + 1;
+    return raiz;
+}
+template <typename T>
+NodoAVL<T> *adicionar(NodoAVL<T> *raiz, T *dado)
+{
+    printf("pinto\n");
+    if (raiz->_dado == nullptr)
+    {
+        raiz->_filhoEsquerda = nullptr;
+        raiz->_filhoDireita = nullptr;
+        raiz->_dado = dado;
+        raiz->_altura = 0;
+    }
+    else
+    {
+        raiz = insere(raiz, dado);
+    }
+
+    //raiz->_dado = dado;
+    printf("raiz.dado: %d\nraiz.altura: %d\nraiz.filhoEsq: %p\nraiz.filhoDir: %p\n\n", *raiz->_dado, raiz->_altura, raiz->_filhoEsquerda, raiz->_filhoDireita);
     return raiz;
 }
 
@@ -156,6 +176,8 @@ template <typename T>
 NodoAVL<T> *getNodo(NodoAVL<T> *raiz, T dado)
 {
     printf("getNodo\n");
+    printf("raiz.dado: %d\nraiz.altura: %d\nraiz.filhoEsq: %p\nraiz.filhoDir: %p\n\n", *raiz->_dado, raiz->_altura, raiz->_filhoEsquerda, raiz->_filhoDireita);
+    /*
     while (raiz != NULL && dado != *raiz->_dado)
     {
         printf("loop\n");
@@ -167,7 +189,7 @@ NodoAVL<T> *getNodo(NodoAVL<T> *raiz, T dado)
         {
             raiz = raiz->_filhoDireita;
         }
-    }
+    }*/
     printf("fim getNodo\n");
     return raiz;
 }
