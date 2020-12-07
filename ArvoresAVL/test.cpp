@@ -13,13 +13,13 @@ TEST(ArvoreAVLTest, RotacaoDireitaSimples)
 
     NodoAVL<int> *raiz = (NodoAVL<int> *)calloc(1, sizeof(NodoAVL<int>));
 
-    adicionar(raiz, &e4);
-    adicionar(raiz, &e3);
-    adicionar(raiz, &e2);
-    adicionar(raiz, &e1);
+    raiz = adicionar(raiz, &e4);
+    raiz = adicionar(raiz, &e3);
+    raiz = adicionar(raiz, &e2);
+    raiz = adicionar(raiz, &e1);
 
     ASSERT_EQ(getNodo(raiz, e3)->_altura, 2);
-    /*ASSERT_EQ(getNodo(raiz, e3)->_filhoEsquerda, getNodo(raiz, 2));
+    ASSERT_EQ(getNodo(raiz, e3)->_filhoEsquerda, getNodo(raiz, 2));
     ASSERT_EQ(getNodo(raiz, e3)->_filhoDireita, getNodo(raiz, 4));
 
     ASSERT_EQ(getNodo(raiz, e2)->_altura, 1);
@@ -34,22 +34,22 @@ TEST(ArvoreAVLTest, RotacaoDireitaSimples)
     ASSERT_EQ(getNodo(raiz, e4)->_filhoEsquerda, nullptr);
     ASSERT_EQ(getNodo(raiz, e4)->_filhoDireita, nullptr);
 
-    destruir(raiz);*/
+    destruir(raiz);
 }
 
 TEST(ArvoreAVLTest, RotacaoEsquerdaSimples)
 {
-    /*int e1 = 1;
+    int e1 = 1;
     int e2 = 2;
     int e3 = 3;
     int e4 = 4;
 
     NodoAVL<int> *raiz = (NodoAVL<int> *)calloc(1, sizeof(NodoAVL<int>));
 
-    adicionar(raiz, &e1);
-    adicionar(raiz, &e2);
-    adicionar(raiz, &e3);
-    adicionar(raiz, &e4);
+    raiz = adicionar(raiz, &e1);
+    raiz = adicionar(raiz, &e2);
+    raiz = adicionar(raiz, &e3);
+    raiz = adicionar(raiz, &e4);
 
     ASSERT_EQ(getNodo(raiz, e3)->_altura, 1);
     ASSERT_EQ(getNodo(raiz, e3)->_filhoEsquerda, nullptr);
@@ -67,12 +67,12 @@ TEST(ArvoreAVLTest, RotacaoEsquerdaSimples)
     ASSERT_EQ(getNodo(raiz, e4)->_filhoEsquerda, nullptr);
     ASSERT_EQ(getNodo(raiz, e4)->_filhoDireita, nullptr);
 
-    destruir(raiz);*/
+    destruir(raiz);
 }
 
 TEST(ArvoreAVLTest, RotacaoEsquerdaDireita)
 {
-    /*int e2 = 2;
+    int e2 = 2;
     int e3 = 3;
     int e4 = 4;
     int e6 = 6;
@@ -83,13 +83,13 @@ TEST(ArvoreAVLTest, RotacaoEsquerdaDireita)
 
     NodoAVL<int> *raiz = (NodoAVL<int> *)calloc(1, sizeof(NodoAVL<int>));
 
-    adicionar(raiz, &e6);
-    adicionar(raiz, &e4);
-    adicionar(raiz, &e8);
-    adicionar(raiz, &e2);
-    adicionar(raiz, &e7);
-    adicionar(raiz, &e9);
-    adicionar(raiz, &e3);
+    raiz = adicionar(raiz, &e6);
+    raiz = adicionar(raiz, &e4);
+    raiz = adicionar(raiz, &e8);
+    raiz = adicionar(raiz, &e2);
+    raiz = adicionar(raiz, &e7);
+    raiz = adicionar(raiz, &e9);
+    raiz = adicionar(raiz, &e3);
 
     e = 2;
     ASSERT_EQ(getNodo(raiz, e)->_altura, 0);
@@ -124,12 +124,12 @@ TEST(ArvoreAVLTest, RotacaoEsquerdaDireita)
     e = 9;
     ASSERT_EQ(getNodo(raiz, e)->_altura, 0);
     ASSERT_EQ(getNodo(raiz, e)->_filhoEsquerda, nullptr);
-    ASSERT_EQ(getNodo(raiz, e)->_filhoDireita, nullptr);*/
+    ASSERT_EQ(getNodo(raiz, e)->_filhoDireita, nullptr);
 }
 
 TEST(ArvoreAVLTest, RotacaoDireitaEsquerda)
 {
-    /*int e1 = 1;
+    int e1 = 1;
     int e2 = 2;
     int e3 = 3;
     int e4 = 4;
@@ -142,15 +142,15 @@ TEST(ArvoreAVLTest, RotacaoDireitaEsquerda)
 
     NodoAVL<int> *raiz = (NodoAVL<int> *)calloc(1, sizeof(NodoAVL<int>));
 
-    adicionar(raiz, &e1);
-    adicionar(raiz, &e2);
-    adicionar(raiz, &e3);
-    adicionar(raiz, &e4);
-    adicionar(raiz, &e5);
-    adicionar(raiz, &e6);
-    adicionar(raiz, &e7);
-    adicionar(raiz, &e16);
-    adicionar(raiz, &e15);
+    raiz = adicionar(raiz, &e1);
+    raiz = adicionar(raiz, &e2);
+    raiz = adicionar(raiz, &e3);
+    raiz = adicionar(raiz, &e4);
+    raiz = adicionar(raiz, &e5);
+    raiz = adicionar(raiz, &e6);
+    raiz = adicionar(raiz, &e7);
+    raiz = adicionar(raiz, &e16);
+    raiz = adicionar(raiz, &e15);
 
     e = 1;
     ASSERT_EQ(getNodo(raiz, e)->_altura, 0);
@@ -197,12 +197,12 @@ TEST(ArvoreAVLTest, RotacaoDireitaEsquerda)
     ASSERT_EQ(getNodo(raiz, e)->_filhoEsquerda, nullptr);
     ASSERT_EQ(getNodo(raiz, e)->_filhoDireita, nullptr);
 
-    destruir(raiz);*/
+    destruir(raiz);
 }
 
 TEST(ArvoreAVLTest, EmOrdem)
 {
-    /*int e2 = 2;
+    int e2 = 2;
     int e3 = 3;
     int e4 = 4;
     int e5 = 5;
@@ -211,13 +211,13 @@ TEST(ArvoreAVLTest, EmOrdem)
     int e9 = 9;
 
     NodoAVL<int> *raiz = (NodoAVL<int> *)calloc(1, sizeof(NodoAVL<int>));
-    adicionar(raiz, &e5);
-    adicionar(raiz, &e3);
-    adicionar(raiz, &e7);
-    adicionar(raiz, &e2);
-    adicionar(raiz, &e4);
-    adicionar(raiz, &e6);
-    adicionar(raiz, &e9);
+    raiz = adicionar(raiz, &e5);
+    raiz = adicionar(raiz, &e3);
+    raiz = adicionar(raiz, &e7);
+    raiz = adicionar(raiz, &e2);
+    raiz = adicionar(raiz, &e4);
+    raiz = adicionar(raiz, &e6);
+    raiz = adicionar(raiz, &e9);
 
     ListaEncadeada *lista = iniciaListaEncadeada();
     emOrdem(raiz, lista);
@@ -230,12 +230,12 @@ TEST(ArvoreAVLTest, EmOrdem)
     ASSERT_EQ(*(int *)retiraDoInicio(lista), e9);
 
     destruir(raiz);
-    free(lista);*/
+    free(lista);
 }
 
 TEST(ArvoreAVLTest, PosOrdem)
 {
-    /*int e2 = 2;
+    int e2 = 2;
     int e3 = 3;
     int e4 = 4;
     int e5 = 5;
@@ -244,13 +244,13 @@ TEST(ArvoreAVLTest, PosOrdem)
     int e9 = 9;
 
     NodoAVL<int> *raiz = (NodoAVL<int> *)calloc(1, sizeof(NodoAVL<int>));
-    adicionar(raiz, &e5);
-    adicionar(raiz, &e3);
-    adicionar(raiz, &e7);
-    adicionar(raiz, &e2);
-    adicionar(raiz, &e4);
-    adicionar(raiz, &e6);
-    adicionar(raiz, &e9);
+    raiz = adicionar(raiz, &e5);
+    raiz = adicionar(raiz, &e3);
+    raiz = adicionar(raiz, &e7);
+    raiz = adicionar(raiz, &e2);
+    raiz = adicionar(raiz, &e4);
+    raiz = adicionar(raiz, &e6);
+    raiz = adicionar(raiz, &e9);
 
     ListaEncadeada *lista = iniciaListaEncadeada();
     posOrdem(raiz, lista);
@@ -263,12 +263,12 @@ TEST(ArvoreAVLTest, PosOrdem)
     ASSERT_EQ(*(int *)retiraDoInicio(lista), e5);
 
     destruir(raiz);
-    free(lista);*/
+    free(lista);
 }
 
 TEST(ArvoreAVLTest, GetNodo)
 {
-    /*int e2 = 2;
+    int e2 = 2;
     int e3 = 3;
     int e4 = 4;
     int e5 = 5;
@@ -277,13 +277,13 @@ TEST(ArvoreAVLTest, GetNodo)
     int e9 = 9;
 
     NodoAVL<int> *raiz = (NodoAVL<int> *)calloc(1, sizeof(NodoAVL<int>));
-    adicionar(raiz, &e5);
-    adicionar(raiz, &e3);
-    adicionar(raiz, &e7);
-    adicionar(raiz, &e2);
-    adicionar(raiz, &e4);
-    adicionar(raiz, &e6);
-    adicionar(raiz, &e9);
+    raiz = adicionar(raiz, &e5);
+    raiz = adicionar(raiz, &e3);
+    raiz = adicionar(raiz, &e7);
+    raiz = adicionar(raiz, &e2);
+    raiz = adicionar(raiz, &e4);
+    raiz = adicionar(raiz, &e6);
+    raiz = adicionar(raiz, &e9);
 
     NodoAVL<int> *nodo;
 
@@ -296,7 +296,7 @@ TEST(ArvoreAVLTest, GetNodo)
     ASSERT_NE(nodo->_filhoEsquerda, nullptr);
     ASSERT_NE(nodo->_filhoDireita, nullptr);
     ASSERT_EQ(*nodo->_dado, 7);
-    destruir(raiz);*/
+    destruir(raiz);
 }
 
 TEST(ArvoreAVLTest, Remover)
@@ -311,13 +311,13 @@ TEST(ArvoreAVLTest, Remover)
     int *dadoRemovido;
 
     NodoAVL<int> *raiz = (NodoAVL<int> *)calloc(1, sizeof(NodoAVL<int>));
-    adicionar(raiz, &e5);
-    adicionar(raiz, &e3);
-    adicionar(raiz, &e7);
-    adicionar(raiz, &e2);
-    adicionar(raiz, &e4);
-    adicionar(raiz, &e6);
-    adicionar(raiz, &e9);
+    raiz = adicionar(raiz, &e5);
+    raiz = adicionar(raiz, &e3);
+    raiz = adicionar(raiz, &e7);
+    raiz = adicionar(raiz, &e2);
+    raiz = adicionar(raiz, &e4);
+    raiz = adicionar(raiz, &e6);
+    raiz = adicionar(raiz, &e9);
 
     NodoAVL<int> *nodo;
 
@@ -341,6 +341,7 @@ TEST(ArvoreAVLTest, Remover)
     //Testa remover raiz
     adicionar(raiz, &e6);
     adicionar(raiz, &e9);
+
     *dadoRemovido = *(remover(raiz, 5)->_dado);
     ASSERT_EQ(*dadoRemovido, 5);
     nodo = getNodo(raiz, 7);
