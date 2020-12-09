@@ -13,6 +13,16 @@ struct NodoAVL
     int _altura;
 };
 template <typename T>
+void printNodo(NodoAVL<T> *nodo)
+{
+    if (nodo)
+    {
+        printf("----------\nend: %p\nnodo.dado: %d\nnodo.altura: %d\nnodo.esq: %p\nnodo.dir: %p\n----------\n", nodo, *nodo->_dado, nodo->_altura, nodo->_filhoEsquerda, nodo->_filhoDireita);
+        return;
+    }
+    printf("NODO NULO\n");
+}
+template <typename T>
 void preOrdem(NodoAVL<T> *raiz, ListaEncadeada *lista)
 {
     if ((raiz != NULL || raiz != nullptr) && raiz->_dado != nullptr)
@@ -104,7 +114,42 @@ NodoAVL<T> *rotDireitaEsquerda(NodoAVL<T> *raiz)
     raiz->_filhoDireita = rotDireita(raiz->_filhoDireita);
     return rotEsquerda(raiz);
 }
+template <typename T>
+NodoAVL<T> *balancearNodo(NodoAVL<T> *raiz, T dadoF, int fb)
+{
 
+    if (fb == 2 || fb == -2)
+    {
+        if (dadoF < *raiz->_dado)
+        {
+            if (dadoF < *raiz->_filhoEsquerda->_dado)
+            {
+                raiz = rotDireita(raiz);
+            }
+            else
+            {
+                raiz = rotEsquerdaDireita(raiz);
+            }
+        }
+        else
+        {
+            if (dadoF > *raiz->_filhoDireita->_dado)
+            {
+                raiz = rotEsquerda(raiz);
+            }
+            else
+            {
+                raiz = rotDireitaEsquerda(raiz);
+            }
+        }
+    }
+    return raiz;
+}
+template <typename T>
+int getFB(NodoAVL<T> *raiz)
+{
+    return (getHigh(raiz->_filhoEsquerda) - getHigh(raiz->_filhoDireita));
+}
 template <typename T>
 NodoAVL<T> *insere(NodoAVL<T> *raiz, T *dado)
 {
@@ -119,19 +164,9 @@ NodoAVL<T> *insere(NodoAVL<T> *raiz, T *dado)
     {
         //printf("    dado<raiz.dado\n");
         raiz->_filhoEsquerda = insere(raiz->_filhoEsquerda, dado);
-        int fb = (getHigh(raiz->_filhoEsquerda) - getHigh(raiz->_filhoDireita));
+        int fb = getFB(raiz);
         //printf("fb = %d\n", fb);
-        if (fb == 2 || fb == -2)
-        {
-            if (*dado < *raiz->_filhoEsquerda->_dado)
-            {
-                raiz = rotDireita(raiz);
-            }
-            else
-            {
-                raiz = rotEsquerdaDireita(raiz);
-            }
-        }
+        raiz = balancearNodo(raiz, *dado, fb);
     }
     else
     {
@@ -140,20 +175,9 @@ NodoAVL<T> *insere(NodoAVL<T> *raiz, T *dado)
         {
             //printf("    dado>raiz.dado\n");
             raiz->_filhoDireita = insere(raiz->_filhoDireita, dado);
-            int fb = (getHigh(raiz->_filhoEsquerda) - getHigh(raiz->_filhoDireita));
+            int fb = getFB(raiz);
             //printf("fb = %d\n", fb);
-            if (fb == 2 || fb == -2)
-            {
-                //printf("pinto");
-                if (*dado > *raiz->_filhoDireita->_dado)
-                {
-                    raiz = rotEsquerda(raiz);
-                }
-                else
-                {
-                    raiz = rotDireitaEsquerda(raiz);
-                }
-            }
+            raiz = balancearNodo(raiz, *dado, fb);
         }
     }
     raiz->_altura = maxEntre(getHigh(raiz->_filhoEsquerda), getHigh(raiz->_filhoDireita)) + 1;
@@ -226,7 +250,7 @@ NodoAVL<T> *getFatherNodo(NodoAVL<T> *raiz, T dado)
 }
 
 template <typename T>
-NodoAVL<T> *getMinDIr(NodoAVL<T> *raiz)
+NodoAVL<T> *getMin(NodoAVL<T> *raiz)
 {
 
     while (raiz->_filhoEsquerda != NULL)
@@ -236,7 +260,7 @@ NodoAVL<T> *getMinDIr(NodoAVL<T> *raiz)
     return raiz;
 }
 template <typename T>
-NodoAVL<T> *getMaxEsq(NodoAVL<T> *raiz)
+NodoAVL<T> *getMax(NodoAVL<T> *raiz)
 {
 
     while (raiz->_filhoDireita != NULL)
@@ -249,78 +273,107 @@ NodoAVL<T> *getMaxEsq(NodoAVL<T> *raiz)
 template <typename T>
 NodoAVL<T> *remover(NodoAVL<T> *raiz, T dado)
 {
-    NodoAVL<T> *auxR;
 
-    bool dir = true;
-    NodoAVL<T> *remP = getFatherNodo(raiz, dado);
-    NodoAVL<T> *rem;
-    if (remP == nullptr || remP->_dado == nullptr)
+    printf("\n\n    Entrando em Remover - %d\n", dado);
+    printf("Raiz dada\n");
+    printNodo(raiz);
+    if (raiz == nullptr)
     {
-
-        if (dado == *raiz->_dado)
+        printf("RAIZ NULA\n");
+        return nullptr;
+    }
+    printf("a\n");
+    NodoAVL<T> *response = nullptr;
+    if (dado < *raiz->_dado)
+        printf("        Dado Menor\n");
+    {
+        response = remover(raiz->_filhoEsquerda, dado);
+        printf("RESPONSE\n");
+        printNodo(response);
+        if (response)
         {
-            auxR = raiz;
-            if (raiz->_filhoDireita != nullptr)
+            if (*response->_dado == dado)
             {
-                NodoAVL<T> *auxx = getMinDIr(raiz->_filhoDireita);
-                NodoAVL<T> *auxP = getFatherNodo(raiz, *auxx->_dado);
-                raiz->_dado = auxx->_dado;
-                auxP->_filhoEsquerda = nullptr;
-                free(auxx);
+                int fb = getFB(raiz);
+                if (fb >= 2 || fb <= -2)
+                {
+                    if (getHigh(raiz->_filhoDireita->_filhoEsquerda) <= getHigh(raiz->_filhoDireita->_filhoDireita))
+                    {
+                        raiz = rotDireita(raiz);
+                    }
+                    else
+                    {
+                        raiz = rotDireitaEsquerda(raiz);
+                    }
+                }
+            }
+        }
+    }
+    if (dado > *raiz->_dado)
+    {
+        printf("        Dado Maior\n");
+        response = remover(raiz->_filhoDireita, dado);
+        printf("RESPONSE\n");
+        printNodo(response);
+        if (response)
+        {
+            if (*response->_dado == dado)
+            {
+                int fb = getFB(raiz);
+                if (fb >= 2 || fb <= -2)
+                {
+                    if (getHigh(raiz->_filhoEsquerda->_filhoDireita) <= getHigh(raiz->_filhoEsquerda->_filhoEsquerda))
+                    {
+                        raiz = rotEsquerda(raiz);
+                    }
+                    else
+                    {
+                        raiz = rotEsquerdaDireita(raiz);
+                    }
+                }
+            }
+        }
+    }
+    if (dado == *raiz->_dado)
+    {
+        printf("        Achei\n");
+        NodoAVL<T> *old = raiz;
+        if (raiz->_filhoEsquerda == nullptr || raiz->_filhoDireita == nullptr)
+        {
+
+            if (raiz->_filhoEsquerda != nullptr)
+            {
+                raiz = raiz->_filhoEsquerda;
             }
             else
             {
-                NodoAVL<T> *auxx = getMaxEsq(raiz->_filhoEsquerda);
-                NodoAVL<T> *auxP = getFatherNodo(raiz, *auxx->_dado);
-                raiz->_dado = auxx->_dado;
-                auxP->_filhoDireita = nullptr;
-                free(auxx);
+                raiz = raiz->_filhoDireita;
             }
-            return auxR;
-        }
-        return nullptr;
-    }
-    else
-    {
-        if (dado > *remP->_dado)
-        {
-            if (remP->_filhoDireita == nullptr)
-            {
-                return nullptr;
-            }
-            rem = remP->_filhoDireita;
+            //free(old);
         }
         else
         {
-            if (remP->_filhoEsquerda == nullptr)
+            NodoAVL<T> *aux = getMin(raiz->_filhoDireita);
+            raiz->_dado = aux->_dado;
+            remover(raiz->_filhoDireita, *raiz->_dado);
+            int fb = getFB(raiz);
+            if (fb >= 2 || fb <= -2)
             {
-                return nullptr;
+                if (getHigh(raiz->_filhoEsquerda->_filhoDireita) <= getHigh(raiz->_filhoEsquerda->_filhoEsquerda))
+                {
+                    raiz = rotEsquerda(raiz);
+                }
+                else
+                {
+                    raiz = rotEsquerdaDireita(raiz);
+                }
             }
-            rem = remP->_filhoEsquerda;
-            dir = false;
         }
+        printf("    Saindo Remover (raiz.dado == dado)\n");
+        return old;
     }
-    auxR = rem;
-    if (rem->_filhoEsquerda == nullptr && rem->_filhoDireita == nullptr)
-    {
-        free(rem);
-        if (dir)
-        {
-            remP->_filhoDireita = nullptr;
-        }
-        else
-        {
-            remP->_filhoEsquerda = nullptr;
-        }
-    }
-    else
-    {
-        getMinDIr(rem->_filhoDireita)->_filhoEsquerda = rem->_filhoEsquerda;
-        remP->_filhoEsquerda = rem->_filhoDireita;
-        free(rem);
-    }
-
-    return auxR;
+    printf("    Saindo Remover\n");
+    return nullptr;
 }
 template <typename T>
 void destruir(NodoAVL<T> *raiz)

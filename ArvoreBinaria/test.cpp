@@ -164,12 +164,12 @@ TEST(ArvoreBinariaBuscaTest, Remover)
 
     //Testa remover folha
     dadoRemovido = remover(raiz, 9);
-    /*
+
     ASSERT_EQ(*dadoRemovido, 9);
 
     nodo = getNodo(raiz, 7);
     ASSERT_EQ(nodo->_filhoDireita, nullptr);
-    
+
     //Testa remover folha
     dadoRemovido = remover(raiz, 6);
     ASSERT_EQ(*dadoRemovido, 6);
@@ -197,7 +197,7 @@ TEST(ArvoreBinariaBuscaTest, Remover)
     ASSERT_EQ(raiz->_filhoEsquerda->_filhoDireita->_filhoEsquerda, nullptr);
     ASSERT_EQ(*raiz->_filhoEsquerda->_filhoEsquerda->_dado, 2);
 
-    destruir(raiz);*/
+    destruir(raiz);
 }
 
 int main(int argc, char **argv)

@@ -301,7 +301,7 @@ TEST(ArvoreAVLTest, GetNodo)
 
 TEST(ArvoreAVLTest, Remover)
 {
-    /*int e2 = 2;
+    int e2 = 2;
     int e3 = 3;
     int e4 = 4;
     int e5 = 5;
@@ -324,10 +324,11 @@ TEST(ArvoreAVLTest, Remover)
     //Testa remover chave inexistente
     nodo = remover(raiz, 10);
     ASSERT_EQ(nodo, nullptr);
-
+    printf("----------------------------------------------------------------------------\n\n\n\n");
     //Testa remover folha
-    *dadoRemovido = *(remover(raiz, 9)->_dado);
-    ASSERT_EQ(*dadoRemovido, 9);
+    nodo = remover(raiz, 9);
+    //*dadoRemovido = *(remover(raiz, 9)->_dado);
+    /*ASSERT_EQ(*dadoRemovido, 9);
     nodo = getNodo(raiz, 7);
     ASSERT_EQ(nodo->_filhoDireita, nullptr);
 
@@ -339,7 +340,7 @@ TEST(ArvoreAVLTest, Remover)
     ASSERT_EQ(nodo->_filhoDireita, nullptr);
 
     //Testa remover raiz
-    adicionar(raiz, &e6);
+    /*adicionar(raiz, &e6);
     adicionar(raiz, &e9);
 
     *dadoRemovido = *(remover(raiz, 5)->_dado);
