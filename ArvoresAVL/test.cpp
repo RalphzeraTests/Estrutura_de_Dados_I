@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "NodoAVLPerna.h"
+#include "NodoAVL.h"
 #include <mutex>
 
 //std::mutex g_singleThread;
