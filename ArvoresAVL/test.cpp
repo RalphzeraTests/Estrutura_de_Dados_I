@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "NodoAVL.h"
+#include "NodoAVLPerna.h"
 #include <mutex>
 
 //std::mutex g_singleThread;
@@ -125,6 +125,7 @@ TEST(ArvoreAVLTest, RotacaoEsquerdaDireita)
     ASSERT_EQ(getNodo(raiz, e)->_altura, 0);
     ASSERT_EQ(getNodo(raiz, e)->_filhoEsquerda, nullptr);
     ASSERT_EQ(getNodo(raiz, e)->_filhoDireita, nullptr);
+    destruir(raiz);
 }
 
 TEST(ArvoreAVLTest, RotacaoDireitaEsquerda)
@@ -308,7 +309,7 @@ TEST(ArvoreAVLTest, Remover)
     int e6 = 6;
     int e7 = 7;
     int e9 = 9;
-    int *dadoRemovido;
+    NodoAVL<int> *nodo;
 
     NodoAVL<int> *raiz = (NodoAVL<int> *)calloc(1, sizeof(NodoAVL<int>));
     raiz = adicionar(raiz, &e5);
@@ -319,49 +320,39 @@ TEST(ArvoreAVLTest, Remover)
     raiz = adicionar(raiz, &e6);
     raiz = adicionar(raiz, &e9);
 
-    NodoAVL<int> *nodo;
-
     //Testa remover chave inexistente
     nodo = remover(raiz, 10);
-    ASSERT_EQ(nodo, nullptr);
-    printf("----------------------------------------------------------------------------\n\n\n\n");
+    ASSERT_EQ(nodo, raiz);
+
     //Testa remover folha
     nodo = remover(raiz, 9);
-    //*dadoRemovido = *(remover(raiz, 9)->_dado);
-    /*ASSERT_EQ(*dadoRemovido, 9);
+    ASSERT_EQ(nodo, raiz);
     nodo = getNodo(raiz, 7);
     ASSERT_EQ(nodo->_filhoDireita, nullptr);
 
     //Testa remover folha
-    *dadoRemovido = *(remover(raiz, 6)->_dado);
-    ASSERT_EQ(*dadoRemovido, 6);
+    nodo = remover(raiz, 6);
+    ASSERT_EQ(nodo, raiz);
     nodo = getNodo(raiz, 7);
     ASSERT_EQ(nodo->_filhoEsquerda, nullptr);
     ASSERT_EQ(nodo->_filhoDireita, nullptr);
 
-    //Testa remover raiz
-    /*adicionar(raiz, &e6);
+    //Testa remover raiz (**use a estratégia de menor chave na subárvore à direita**)
+    adicionar(raiz, &e6);
     adicionar(raiz, &e9);
+    raiz = remover(raiz, e5);
+    ASSERT_EQ(*raiz->_dado, e6);
+    nodo = getNodo(raiz, e7);
+    ASSERT_EQ(nodo->_filhoEsquerda, nullptr);
+    ASSERT_EQ(nodo->_filhoDireita, getNodo(raiz, e9));
 
-    *dadoRemovido = *(remover(raiz, 5)->_dado);
-    ASSERT_EQ(*dadoRemovido, 5);
-    nodo = getNodo(raiz, 7);
-    ASSERT_EQ(nodo->_filhoDireita, getNodo(raiz, 9));
-    ASSERT_EQ(nodo->_filhoEsquerda, getNodo(raiz, 6));
-
-    //Testa remover nodo com filhoDireita sem descendente a direita
-    adicionar(raiz, &e5);
-    nodo = getNodo(raiz, 4);
-    ASSERT_EQ(nodo->_filhoDireita, getNodo(raiz, 5));
-    *dadoRemovido = *(remover(raiz, 3)->_dado);
-    ASSERT_EQ(*dadoRemovido, 3);
-    ASSERT_EQ(*raiz->_filhoEsquerda->_dado, 4);
-    ASSERT_EQ(*raiz->_filhoEsquerda->_filhoDireita->_dado, 4);
-    ASSERT_EQ(raiz->_filhoEsquerda->_filhoDireita->_filhoDireita, nullptr);
-    ASSERT_EQ(raiz->_filhoEsquerda->_filhoDireita->_filhoEsquerda, nullptr);
-    ASSERT_EQ(*raiz->_filhoEsquerda->_filhoEsquerda->_dado, 2);
-
-    destruir(raiz);*/
+    //Testar remover nodo apenas subarvore direita
+    nodo = remover(raiz, e7);
+    ASSERT_EQ(nodo, raiz);
+    raiz = nodo;
+    nodo = getNodo(raiz, e9);
+    ASSERT_EQ(raiz->_filhoDireita, nodo);
+    destruir(raiz);
 }
 
 int main(int argc, char **argv)
