@@ -63,7 +63,7 @@ Para usar o color scheme do Dracula substitua os trechos do seu arquivo de confi
 ```
 ## Alias úteis
 
-Primeiro entre no arquivo bashrc com o seguinte comando: ```bash sudo nano /etc/bash.bashrc```.
+Primeiro entre no arquivo bashrc com o seguinte comando: ```$ sudo nano /etc/bash.bashrc```.
 
 Cole os aliases no FIM do arquivo
 
