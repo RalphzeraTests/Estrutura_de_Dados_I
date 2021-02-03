@@ -89,6 +89,8 @@ wincd()
 ```
 > Está um pouco feio e mal otimizado, mas quebra o galho kkkk  
 
+Para usar: ```bash wincd "<CAMINHO>"```
+
 #### 2 - Clear
 
 Só porque eu tenho preguiça de digitar clear toda hora e fiquei mal acostumado com o cmd e powershel...
