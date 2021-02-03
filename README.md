@@ -6,7 +6,7 @@
 > Primeiro instale o libgtest-dev, siga as instruções neste vídeo: https://www.youtube.com/watch?v=kuglfQf17SA&ab_channel=srcmake</br>
 > Caso apenas compile o programa usando a flag -lgtest não irá funcionar</br>
 
-A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos
+A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos (e só pode ter um .c ou .cpp, os seus codigos DEVEM estar em .h)
 - $ g++ teste.cpp -lgtest -lpthread -o out</br>
 - $ ./out</br>
 
