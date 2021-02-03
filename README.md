@@ -18,7 +18,9 @@ A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos (e só po
 
 # Sobre o WSL
 
-Caso instale o WSL, em vez de abrir um prompt novo para cada coisa, recomendo usar o app da microsft Windows Terminal (https://www.microsoft.com/pt-br/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab). Nele é possivel, também, configurar a aparencia.
+Caso instale o WSL, em vez de abrir um prompt novo para cada coisa, recomendo usar o app da microsft Windows Terminal (https://www.microsoft.com/pt-br/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab). 
+
+## Modificando a aparência
 
 Para usar o color scheme do Dracula substitua os trechos do seu arquivo de configuração do windows terminal pelos seguintes termos:
 
@@ -59,6 +61,39 @@ Para usar o color scheme do Dracula substitua os trechos do seu arquivo de confi
       ]
 
 ```
+## Alias úteis
+
+Primeiro entre no arquivo bashrc com o seguinte comando: ```bash sudo nano /etc/bash.bashrc```.
+
+Cole os aliases no FIM do arquivo
+
+#### 1 - Usando diretórios do Windows
+
+Como o wsl usa o bash do ubunto, ao tentar dar cd em um diretório do windows, irá dar errado por conta das barras invertidas, a função a seguir contorna este problema:
+
+```bash
+
+wincd()
+{
+        base=${PWD##Users/}
+        dira=${1##$base}
+        dira=${dira#/}
+        cam="$(wslpath "$dira")"
+        cam=${cam,,}
+        base=${base,,}
+        cam=${cam##$base/}
+        cam=${cam##*mnt/c/}
+        cd "$cam"
+}
+
+```
+> Está um pouco feio e mal otimizado, mas quebra o galho kkkk  
+
+#### 2 - Clear
+
+Só porque eu tenho preguiça de digitar clear toda hora e fiquei mal acostumado com o cmd e powershel...
+
+```bash alias cls="clear" ```
 
 # Exercícios Feitos
 
