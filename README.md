@@ -89,7 +89,7 @@ wincd()
 ```
 > Está um pouco feio e mal otimizado, mas quebra o galho kkkk  
 
-Para usar: ```bash wincd "<CAMINHO>"```
+Para usar: ``` wincd "<CAMINHO>"```
 
 #### 2 - Clear
 
