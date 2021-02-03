@@ -95,7 +95,7 @@ Para usar: ```$ wincd "<CAMINHO>"```
 
 Só porque eu tenho preguiça de digitar clear toda hora e fiquei mal acostumado com o cmd e powershel...
 
-```bash alias cls="clear" ```
+``` alias cls="clear" ```
 
 # Exercícios Feitos
 
