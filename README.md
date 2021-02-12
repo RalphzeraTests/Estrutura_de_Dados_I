@@ -1,7 +1,22 @@
 ## Como fazer funcionar o gtest (Exemplo da Lista encadeada)
 
 > Tudo aqui é feito no bash do linux, caso esteja no windows: https://www.youtube.com/watch?time_continue=1&v=xzgwDbe7foQ&feature=emb_title</br>
-> Primeiro instale o libgtest-dev, siga as instruções neste vídeo: https://www.youtube.com/watch?v=kuglfQf17SA&ab_channel=srcmake</br>
+> Primeiro instale o libgtest-dev</br>
+
+>       - $ sudo apt-get install libgtest-dev
+
+>       - $ sudo apt-get install cmake
+
+>       - $ cd /usr/src/gtest
+
+>       - $ sudo cmake CMakeLists.txt
+
+>       - $ sudo make
+
+>       - $ sudo cp *.a /usr/lib
+
+>       Pode ser que o ultimo comando não funcione, retornando a seguinte mensagem: `cp: cannot stat '*.a': No such file or directory`. Neste caso, vá ao diretorio que seus arquivos estão e tente compilá-los da forma descrita abaixo, provavelmente ja vai estar funcionando.
+
 > Caso apenas compile o programa usando a flag -lgtest não irá funcionar</br>
 
 É possivel tabém compilar a partir dos arquivos baixados do moodle (que então vão conter mais de um arquivo .c ou .cpp). Neste caso faça o seguinte:
