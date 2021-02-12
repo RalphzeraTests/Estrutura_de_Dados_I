@@ -15,7 +15,7 @@
 
 >       - $ sudo cp *.a /usr/lib
 
->       Pode ser que o ultimo comando não funcione, retornando a seguinte mensagem: `cp: cannot stat '*.a': No such file or directory`. Neste caso, vá ao diretorio que seus arquivos estão e tente compilá-los da forma descrita abaixo, provavelmente ja vai estar funcionando.
+> Pode ser que o ultimo comando não funcione, retornando a seguinte mensagem: `cp: cannot stat '*.a': No such file or directory`. Neste caso, vá ao diretorio que seus arquivos estão e tente compilá-los da forma descrita abaixo, provavelmente ja vai estar funcionando.
 
 > Caso apenas compile o programa usando a flag -lgtest não irá funcionar</br>
 
