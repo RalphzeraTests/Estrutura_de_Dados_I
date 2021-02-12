@@ -4,18 +4,10 @@
 > Primeiro instale o libgtest-dev, siga as instruções neste vídeo: https://www.youtube.com/watch?v=kuglfQf17SA&ab_channel=srcmake</br>
 > Caso apenas compile o programa usando a flag -lgtest não irá funcionar</br>
 
-A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos (e só pode ter um .c ou .cpp, os seus codigos DEVEM estar em .h)
-
-- $ g++ teste.cpp -lgtest -lpthread -o out</br>
-- $ ./out</br>
-
 É possivel tabém compilar a partir dos arquivos baixados do moodle (que então vão conter mais de um arquivo .c ou .cpp). Neste caso faça o seguinte:
 
 - $ `g++ *.c* -lgtest -lpthread -o out`
 - $ ./out
-
-  Assim o seu programa será compilado e será possivel rodá-lo.
-  Contudo, não consegui manter a implementação dos métodos da ListaEncadeada em um arquivo separado, por isso mantive dentro do ListaEncadeada.h, mas para questões de testes funciona, já que no moodle é possível matê-las separadas.
 
 ---
 
