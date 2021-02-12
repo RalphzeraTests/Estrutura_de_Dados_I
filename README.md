@@ -1,5 +1,3 @@
-
-
 ## Como fazer funcionar o gtest (Exemplo da Lista encadeada)
 
 > Tudo aqui é feito no bash do linux, caso esteja no windows: https://www.youtube.com/watch?time_continue=1&v=xzgwDbe7foQ&feature=emb_title</br>
@@ -7,18 +5,23 @@
 > Caso apenas compile o programa usando a flag -lgtest não irá funcionar</br>
 
 A biblioteca "gtest/gtest.h" tem que ser incluida em TODOS os arquivos (e só pode ter um .c ou .cpp, os seus codigos DEVEM estar em .h)
+
 - $ g++ teste.cpp -lgtest -lpthread -o out</br>
 - $ ./out</br>
 
+É possivel tabém compilar a partir dos arquivos baixados do moodle (que então vão conter mais de um arquivo .c ou .cpp). Neste caso faça o seguinte:
 
-    Assim o seu programa será compilado e será possivel rodá-lo.
-    Contudo, não consegui manter a implementação dos métodos da ListaEncadeada em um arquivo separado, por isso mantive dentro do ListaEncadeada.h, mas para questões de testes funciona, já que no moodle é possível matê-las separadas.
+- $ `g++ *.c* -lgtest -lpthread -o out`
+- $ ./out
+
+  Assim o seu programa será compilado e será possivel rodá-lo.
+  Contudo, não consegui manter a implementação dos métodos da ListaEncadeada em um arquivo separado, por isso mantive dentro do ListaEncadeada.h, mas para questões de testes funciona, já que no moodle é possível matê-las separadas.
 
 ---
 
 # Sobre o WSL
 
-Caso instale o WSL, em vez de abrir um prompt novo para cada coisa, recomendo usar o app da microsft Windows Terminal (https://www.microsoft.com/pt-br/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab). 
+Caso instale o WSL, em vez de abrir um prompt novo para cada coisa, recomendo usar o app da microsft Windows Terminal (https://www.microsoft.com/pt-br/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab).
 
 ## Modificando a aparência
 
@@ -30,7 +33,7 @@ Para usar o color scheme do Dracula substitua os trechos do seu arquivo de confi
         "defaults": {
             "colorScheme": "Dracula"
         }
-        
+
 
 ```
 
@@ -61,9 +64,10 @@ Para usar o color scheme do Dracula substitua os trechos do seu arquivo de confi
       ]
 
 ```
+
 ## Alias úteis
 
-Primeiro entre no arquivo bashrc com o seguinte comando: ```$ sudo nano /etc/bash.bashrc```.
+Primeiro entre no arquivo bashrc com o seguinte comando: `$ sudo nano /etc/bash.bashrc`.
 
 Cole os aliases no FIM do arquivo
 
@@ -87,23 +91,23 @@ wincd()
 }
 
 ```
-> Está um pouco feio e mal otimizado, mas quebra o galho kkkk  
 
-Para usar: ```$ wincd "<CAMINHO>"```
+> Está um pouco feio e mal otimizado, mas quebra o galho kkkk
+
+Para usar: `$ wincd "<CAMINHO>"`
 
 #### 2 - Clear
 
 Só porque eu tenho preguiça de digitar clear toda hora e fiquei mal acostumado com o cmd e powershel...
 
-``` alias cls="clear" ```
+`alias cls="clear"`
 
 # Exercícios Feitos
 
 ## Racionais
 
 Criei pra testar o gtest, mas não funcionou então eu desisti. (consegui na lista)
-    
-   
+
 ## Lista Encadeada
 
     Código para fazer os testes, ja que no moodle é impossivel...
@@ -117,5 +121,3 @@ Criei pra testar o gtest, mas não funcionou então eu desisti. (consegui na lis
 │   ├── ListaEncadeadaTeste.cpp</br>
 │   ├── lista.exe</br>
 │   └── teste.cpp</br>
-
-
